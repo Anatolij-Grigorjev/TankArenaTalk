@@ -13,14 +13,17 @@ import lombok.Getter;
  */
 public enum DialogueCharacter {
 
-    CLETUS("cletus"),
-    LUGNUT("lugnut");
+    CLETUS("cletus", "Cletus"),
+    LUGNUT("lugnut", "Lugnut");
     
     @Getter
     private final String code;
+    @Getter
+    private final String displayName;
 
-    private DialogueCharacter(String code) {
+    private DialogueCharacter(String code, String displayName) {
         this.code = code;
+        this.displayName = displayName;
     }
 
     @Override

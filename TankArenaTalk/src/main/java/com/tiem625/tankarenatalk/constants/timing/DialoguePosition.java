@@ -13,14 +13,17 @@ import lombok.Getter;
  */
 public enum DialoguePosition {
     
-    BEFORE_SCENE("before"), AFTER_SCENE("after");
+    BEFORE_SCENE("before", "Before Arena"), AFTER_SCENE("after", "After Arena");
     
     @Getter
     private final String code;
+    @Getter
+    private final String displayName;
     
-    private DialoguePosition(String code) 
+    private DialoguePosition(String code, String displayName) 
     {
         this.code = code;
+        this.displayName = displayName;
     }
 
     @Override

@@ -12,15 +12,18 @@ import lombok.Getter;
  * @author Anatolij
  */
 public enum DialogueArena {
-    SANDY_GRAVEYARD("map_Sandy_graveyard"),
-    GRASSY_KNOLL("map_grassy_knoll"),
-    SANDY_ROCK("map_sandy_rock");
+    SANDY_GRAVEYARD("map_sandy_graveyard", "Sandy Graveyard"),
+    GRASSY_KNOLL("map_grassy_knoll", "Grassy Knoll"),
+    SANDY_ROCK("map_sandy_rock", "Sandy Rock");
     
     @Getter
     private final String code;
+    @Getter
+    private final String displayName;
     
-    private DialogueArena(String code) {
+    private DialogueArena(String code, String displayName) {
         this.code = code;
+        this.displayName = displayName;
     }
 
     @Override
