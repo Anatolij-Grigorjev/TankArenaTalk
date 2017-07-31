@@ -11,9 +11,9 @@ import java.util.Arrays;
  *
  * @author Anatolij
  */
-public class ConstantsUtil {
+public class ConstantsUtils {
     
-   private ConstantsUtil() {}
+   private ConstantsUtils() {}
     
     /**
      * Fetch enum value by JSON code, relying on the enum to override the toString method
