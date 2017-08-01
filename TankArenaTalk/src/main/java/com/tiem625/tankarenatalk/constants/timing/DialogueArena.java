@@ -5,13 +5,14 @@
  */
 package com.tiem625.tankarenatalk.constants.timing;
 
+import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
 import lombok.Getter;
 
 /**
  *
  * @author Anatolij
  */
-public enum DialogueArena {
+public enum DialogueArena implements CodeAwareEnum {
     SANDY_GRAVEYARD("map_sandy_graveyard", "Sandy Graveyard"),
     GRASSY_KNOLL("map_grassy_knoll", "Grassy Knoll"),
     SANDY_ROCK("map_sandy_rock", "Sandy Rock");
@@ -24,11 +25,6 @@ public enum DialogueArena {
     private DialogueArena(String code, String displayName) {
         this.code = code;
         this.displayName = displayName;
-    }
-
-    @Override
-    public String toString() {
-        return code;
     }
     
     

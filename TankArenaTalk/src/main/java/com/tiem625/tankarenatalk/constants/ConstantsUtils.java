@@ -23,9 +23,9 @@ public class ConstantsUtils {
      * @param code - the code to search for an enum value against
      * @return
      */
-    public static <T extends Enum<T>> T getEnumValForCode(Class<T> values, String code) {
+    public static <T extends CodeAwareEnum> T getEnumValForCode(Class<T> values, String code) {
        return Arrays.stream(values.getEnumConstants())
-                .filter(pos -> pos.toString().equals(code))
+                .filter(pos -> pos.getCode().equals(code))
                 .findFirst().orElseThrow(() -> new RuntimeException(
                         "Cant find member of " + values.getName() + " for code " + code)
                         );

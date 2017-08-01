@@ -5,13 +5,14 @@
  */
 package com.tiem625.tankarenatalk.constants.timing;
 
+import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
 import lombok.Getter;
 
 /**
  *
  * @author Anatolij
  */
-public enum DialoguePosition {
+public enum DialoguePosition implements CodeAwareEnum {
     
     BEFORE_SCENE("before", "Before Arena"), AFTER_SCENE("after", "After Arena");
     
@@ -24,11 +25,6 @@ public enum DialoguePosition {
     {
         this.code = code;
         this.displayName = displayName;
-    }
-
-    @Override
-    public String toString() {
-        return code;
     }
     
     

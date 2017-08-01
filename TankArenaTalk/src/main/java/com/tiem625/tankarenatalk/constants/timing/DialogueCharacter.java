@@ -5,13 +5,14 @@
  */
 package com.tiem625.tankarenatalk.constants.timing;
 
+import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
 import lombok.Getter;
 
 /**
  *
  * @author Anatolij
  */
-public enum DialogueCharacter {
+public enum DialogueCharacter implements CodeAwareEnum {
 
     CLETUS("cletus", "Cletus"),
     LUGNUT("lugnut", "Lugnut");
@@ -24,11 +25,6 @@ public enum DialogueCharacter {
     private DialogueCharacter(String code, String displayName) {
         this.code = code;
         this.displayName = displayName;
-    }
-
-    @Override
-    public String toString() {
-        return code;
     }
 
     
