@@ -6,13 +6,14 @@
 package com.tiem625.tankarenatalk.constants.timing;
 
 import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
+import com.tiem625.tankarenatalk.constants.DisplayableEnum;
 import lombok.Getter;
 
 /**
  *
  * @author Anatolij
  */
-public enum DialogueArena implements CodeAwareEnum {
+public enum DialogueArena implements CodeAwareEnum, DisplayableEnum {
     SANDY_GRAVEYARD("map_sandy_graveyard", "Sandy Graveyard"),
     GRASSY_KNOLL("map_grassy_knoll", "Grassy Knoll"),
     SANDY_ROCK("map_sandy_rock", "Sandy Rock");

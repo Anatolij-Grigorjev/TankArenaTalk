@@ -6,13 +6,14 @@
 package com.tiem625.tankarenatalk.constants.timing;
 
 import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
+import com.tiem625.tankarenatalk.constants.DisplayableEnum;
 import lombok.Getter;
 
 /**
  *
  * @author Anatolij
  */
-public enum DialoguePosition implements CodeAwareEnum {
+public enum DialoguePosition implements CodeAwareEnum, DisplayableEnum {
     
     BEFORE_SCENE("before", "Before Arena"), AFTER_SCENE("after", "After Arena");
     

@@ -6,13 +6,14 @@
 package com.tiem625.tankarenatalk.constants.timing;
 
 import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
+import com.tiem625.tankarenatalk.constants.DisplayableEnum;
 import lombok.Getter;
 
 /**
  *
  * @author Anatolij
  */
-public enum DialogueCharacter implements CodeAwareEnum {
+public enum DialogueCharacter implements CodeAwareEnum, DisplayableEnum {
 
     CLETUS("cletus", "Cletus"),
     LUGNUT("lugnut", "Lugnut");
