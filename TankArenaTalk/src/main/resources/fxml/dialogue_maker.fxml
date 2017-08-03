@@ -11,9 +11,9 @@
         <tabs>
           <Tab text="General Info">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
                      <children>
-                        <GridPane hgap="10.0" layoutX="15.0" layoutY="15.0" prefHeight="187.0" prefWidth="870.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
+                        <GridPane hgap="10.0" layoutX="15.0" layoutY="15.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="643.0" minWidth="10.0" prefWidth="433.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="427.0" />
@@ -22,7 +22,7 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <GridPane prefHeight="395.0" prefWidth="503.0">
+                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="395.0" prefWidth="503.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="109.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="348.0" />
@@ -64,9 +64,9 @@
                                                 <Label text="Scene Arena" />
                                                 <Label prefHeight="17.0" prefWidth="79.0" text="Scene Plays" GridPane.rowIndex="1" />
                                                 <Label text="Scene For Character" GridPane.rowIndex="2" />
-                                                <ListView fx:id="sceneArenaList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                                                <ListView fx:id="scenePositionList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <ListView fx:id="sceneCharacterList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <ChoiceBox fx:id="sceneArenaChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                <ChoiceBox fx:id="scenePositionChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <ChoiceBox fx:id="sceneCharacterChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                        </children>
@@ -102,10 +102,10 @@
                               <Label text="Change Background Time" GridPane.rowIndex="1" />
                               <Label text="Scene Fade In Time" GridPane.columnIndex="2" />
                               <Label text="Scene Fade Out Time" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <ListView fx:id="sceneBackgroundList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                               <TextField fx:id="changeBackgroundTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="fadeInTime" GridPane.columnIndex="3" />
                               <TextField fx:id="fadeOutTime" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="sceneBackgroundChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <Accordion layoutY="79.0" />
@@ -133,7 +133,7 @@
                                                 <TextField fx:id="rightMoveTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <TextField fx:id="rightDimTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField fx:id="rightCharName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <ListView fx:id="charModelList" prefHeight="42.0" prefWidth="139.0" GridPane.columnIndex="1" />
+                                                <ChoiceBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                                              </children>
                                              <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -177,7 +177,7 @@
                                                 <TextField fx:id="leftMoveTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <TextField fx:id="leftDimTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField fx:id="leftCharName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <ListView fx:id="charModelList" prefHeight="42.0" prefWidth="139.0" GridPane.columnIndex="1" />
+                                                <ChoiceBox fx:id="charModelChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
@@ -198,11 +198,11 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="210.0">
                                  <children>
-                                    <ScrollPane layoutX="-17.0" layoutY="38.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <ScrollPane layoutX="-17.0" layoutY="38.0" maxHeight="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="209.0">
+                                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="205.0">
                                              <children>
-                                                <ListView fx:id="beatsList" prefHeight="400.0" prefWidth="208.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <ListView fx:id="beatsList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                       </content>
@@ -232,9 +232,9 @@
                                                                     </rowConstraints>
                                                                      <children>
                                                                         <Label prefHeight="17.0" prefWidth="135.0" text="Speaker" />
-                                                                        <ListView fx:id="beatSpeakerList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                                                                         <Label prefHeight="17.0" prefWidth="89.0" text="Text" GridPane.rowIndex="1" />
                                                                         <TextArea fx:id="beatText" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                        <ChoiceBox fx:id="speakerChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                                                                      </children>
                                                                   </GridPane>
                                                                </children>
@@ -272,9 +272,12 @@
                                                                           </rowConstraints>
                                                                            <children>
                                                                               <Label text="Signal Type" />
-                                                                              <ListView fx:id="signalTypeList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                                                                               <Label text="Signal Params" GridPane.rowIndex="1" />
+                                                                              <ChoiceBox fx:id="signalTypeChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
                                                                            </children>
+                                                                           <padding>
+                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                           </padding>
                                                                         </GridPane>
                                                                      </children>
                                                                   </AnchorPane>
