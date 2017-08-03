@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.collections.ObservableListBase;
-import javafx.scene.control.ListView;
 import javafx.util.StringConverter;
 
 /**
