@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tiem625.tankarenatalk.constants;
+package com.tiem625.tankarenatalk.constants.enums;
 
+import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
 import lombok.Getter;
 
 /**

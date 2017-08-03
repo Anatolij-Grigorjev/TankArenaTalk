@@ -6,7 +6,7 @@
 package com.tiem625.tankarenatalk.model.scene;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tiem625.tankarenatalk.constants.DialogueCharacterId;
+import com.tiem625.tankarenatalk.constants.enums.DialogueCharacterId;
 import java.math.BigDecimal;
 import lombok.Data;
 

@@ -6,9 +6,9 @@
 package com.tiem625.tankarenatalk.model.scene;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tiem625.tankarenatalk.constants.timing.DialogueArena;
-import com.tiem625.tankarenatalk.constants.timing.DialogueCharacter;
-import com.tiem625.tankarenatalk.constants.timing.DialoguePosition;
+import com.tiem625.tankarenatalk.constants.enums.timing.DialogueArena;
+import com.tiem625.tankarenatalk.constants.enums.timing.DialogueCharacter;
+import com.tiem625.tankarenatalk.constants.enums.timing.DialoguePosition;
 import lombok.Data;
 
 /**

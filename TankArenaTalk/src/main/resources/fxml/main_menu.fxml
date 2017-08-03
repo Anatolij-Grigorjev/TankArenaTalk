@@ -8,8 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" 
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.tiem625.tankarenatalk.controllers.MainSceneController">
    <top>
       <Label text="TANK ARENA  DIALOGUE MAKER 3000(TM)" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
@@ -21,25 +22,34 @@
       </Label>
    </top>
    <center>
-      <HBox BorderPane.alignment="CENTER">
+      <VBox spacing="15.0">
          <children>
-            <Button mnemonicParsing="false" text="Create Dialogue">
-               <HBox.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </HBox.margin>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Create Dialogue">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Edit Dialogue">
-               <HBox.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </HBox.margin>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Edit Dialogue">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </Button>
          </children>
-      </HBox>
+         <opaqueInsets>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </BorderPane.margin>
+      </VBox>
    </center>
 </BorderPane>

@@ -6,7 +6,7 @@
 package com.tiem625.tankarenatalk.model.beat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tiem625.tankarenatalk.constants.DialogueSpeakerLocation;
+import com.tiem625.tankarenatalk.constants.enums.DialogueSpeakerLocation;
 import lombok.Data;
 
 /**
