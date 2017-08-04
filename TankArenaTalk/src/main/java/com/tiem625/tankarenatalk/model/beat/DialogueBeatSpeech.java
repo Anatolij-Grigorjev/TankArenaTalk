@@ -19,4 +19,6 @@ public class DialogueBeatSpeech {
     private DialogueSpeakerLocation speakerLocation;
     @JsonProperty("text")
     private String beatText;
+    @JsonProperty("name")
+    private String beatSpeakerName;
 }

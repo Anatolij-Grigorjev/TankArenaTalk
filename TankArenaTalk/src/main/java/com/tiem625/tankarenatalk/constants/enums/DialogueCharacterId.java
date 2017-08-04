@@ -19,7 +19,7 @@ public enum DialogueCharacterId implements CodeAwareEnum {
     CLETUS(getIdFromCharacter(DialogueCharacter.CLETUS)), 
     LUGNUT(getIdFromCharacter(DialogueCharacter.LUGNUT));
     
-    private static final String ID_PREFIX = "id;";
+    private static final String ID_PREFIX = "!id;";
     @Getter
     private String code;
     
