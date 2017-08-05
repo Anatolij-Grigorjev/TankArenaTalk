@@ -4,312 +4,250 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import com.tiem625.tankarenatalk.components.*?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab text="General Info">
-            <content>
-              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
-                     <children>
-                        <GridPane hgap="10.0" layoutX="15.0" layoutY="15.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="643.0" minWidth="10.0" prefWidth="433.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="427.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="395.0" prefWidth="503.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="109.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="348.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="346.0" minHeight="10.0" prefHeight="184.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label text="Id" />
-                                    <TextField fx:id="sceneId" GridPane.columnIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <Label text="Title" GridPane.rowIndex="1" />
-                                    <TextArea fx:id="sceneTitle" prefHeight="260.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </GridPane.margin>
-                                    </TextArea>
-                                 </children>
-                              </GridPane>
-                              <TitledPane animated="false" collapsible="false" text="Timing" GridPane.columnIndex="1">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0">
-                                       <children>
-                                          <GridPane hgap="5.0" layoutX="21.4" layoutY="20.4" vgap="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.tiem625.tankarenatalk.controllers.DialogueMakerController" >
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="General Info">
+                    <content>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                            <children>
+                                <GridPane hgap="10.0" layoutX="15.0" layoutY="15.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="643.0" minWidth="10.0" prefWidth="433.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="526.0" minWidth="10.0" prefWidth="427.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="395.0" prefWidth="503.0">
                                             <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="183.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="187.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="109.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="348.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="346.0" minHeight="10.0" prefHeight="184.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
-                                             <children>
-                                                <Label text="Scene Arena" />
-                                                <Label prefHeight="17.0" prefWidth="79.0" text="Scene Plays" GridPane.rowIndex="1" />
-                                                <Label text="Scene For Character" GridPane.rowIndex="2" />
-                                                <ChoiceBox fx:id="sceneArenaChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                <ChoiceBox fx:id="scenePositionChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <ChoiceBox fx:id="sceneCharacterChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                                </content>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </TitledPane>
-                           </children>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Scene">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <GridPane hgap="10.0" layoutX="8.0" layoutY="9.0" prefHeight="70.0" prefWidth="878.0" vgap="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="Background" />
-                              <Label text="Change Background Time" GridPane.rowIndex="1" />
-                              <Label text="Scene Fade In Time" GridPane.columnIndex="2" />
-                              <Label text="Scene Fade Out Time" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <TextField fx:id="changeBackgroundTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="fadeInTime" GridPane.columnIndex="3" />
-                              <TextField fx:id="fadeOutTime" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <ChoiceBox fx:id="sceneBackgroundChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                           </children>
-                        </GridPane>
-                        <Accordion layoutY="79.0" />
-                        <GridPane hgap="15.0" layoutX="15.0" layoutY="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <TitledPane animated="false" collapsible="false" layoutX="450.0" layoutY="155.0" prefHeight="402.0" prefWidth="439.0" text="Actor Right Properties" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0" GridPane.columnIndex="1">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <GridPane hgap="10.0" prefHeight="183.0" prefWidth="208.0" vgap="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
-                                             <children>
-                                                <Label text="Char Model" />
-                                                <Label text="Name" GridPane.rowIndex="1" />
-                                                <Label text="Model Dim Time" GridPane.rowIndex="2" />
-                                                <Label text="Model Move Time" GridPane.rowIndex="3" />
-                                                <Label text="Model Change Time" GridPane.rowIndex="4" />
-                                                <TextField fx:id="rightChangeTime" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <TextField fx:id="rightMoveTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <TextField fx:id="rightDimTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="rightCharName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <ChoiceBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                             </children>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </TitledPane>
-                            <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="155.0" prefHeight="402.0" prefWidth="430.0" text="Actor Left Properties" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <GridPane hgap="10.0" layoutX="-6.0" prefHeight="183.0" prefWidth="208.0" vgap="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <Label text="Char Model" />
-                                                <Label text="Name" GridPane.rowIndex="1" />
-                                                <Label text="Model Dim Time" GridPane.rowIndex="2" />
-                                                <Label text="Model Move Time" GridPane.rowIndex="3" />
-                                                <Label text="Model Change Time" GridPane.rowIndex="4" />
-                                                <TextField fx:id="leftChangeTime" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <TextField fx:id="leftMoveTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <TextField fx:id="leftDimTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="leftCharName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <ChoiceBox fx:id="charModelChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </TitledPane>
-                           </children>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="Beats">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <SplitPane dividerPositions="0.2437357630979499" layoutX="53.0" layoutY="68.0" prefHeight="472.0" prefWidth="880.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                          <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="210.0">
-                                 <children>
-                                    <ScrollPane layoutX="-17.0" layoutY="38.0" maxHeight="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <content>
-                                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="205.0">
-                                             <children>
-                                                <ListView fx:id="beatsList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
-                                    </ScrollPane>
-                                 </children>
-                              </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="660.0">
-                                 <children>
-                                    <SplitPane dividerPositions="0.5, 0.5170940170940171" layoutX="250.0" layoutY="135.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                             <children>
-                                                <Accordion layoutX="228.0" layoutY="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                  <panes>
-                                                    <TitledPane animated="false" collapsible="false" text="Speech">
-                                                      <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <GridPane hgap="10.0" layoutX="23.4" layoutY="20.4" prefHeight="181.0" prefWidth="633.0" vgap="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                                                    <columnConstraints>
-                                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                    </columnConstraints>
-                                                                    <rowConstraints>
-                                                                      <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-                                                                      <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
-                                                                    </rowConstraints>
-                                                                     <children>
-                                                                        <Label prefHeight="17.0" prefWidth="135.0" text="Speaker" />
-                                                                        <Label prefHeight="17.0" prefWidth="89.0" text="Text" GridPane.rowIndex="1" />
-                                                                        <TextArea fx:id="beatText" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                        <ChoiceBox fx:id="speakerChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                                     </children>
-                                                                  </GridPane>
-                                                               </children>
-                                                            </AnchorPane>
-                                                      </content>
-                                                    </TitledPane>
-                                                  </panes>
-                                                </Accordion>
-                                             </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                                          <Accordion>
-                                             <panes>
-                                                <TitledPane animated="false" collapsible="false" text="Signals">
-                                                   <content>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                         <children>
-                                                            <SplitPane dividerPositions="0.20026050146532073" layoutX="21.4" layoutY="20.4" prefHeight="168.0" prefWidth="637.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                              <items>
-                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                                     <children>
-                                                                        <ListView fx:id="beatSignalsList" prefHeight="164.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0" />
-                                                                     </children>
-                                                                  </AnchorPane>
-                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                                     <children>
-                                                                        <GridPane fx:id="signalParamsGrid" hgap="10.0" layoutX="153.0" layoutY="34.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                          <columnConstraints>
-                                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                          </columnConstraints>
-                                                                          <rowConstraints>
-                                                                            <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                                                                              <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                                                                            <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
-                                                                          </rowConstraints>
-                                                                           <children>
-                                                                              <Label text="Signal Type" />
-                                                                              <Label text="Signal Params" GridPane.rowIndex="2" />
-                                                                              <ChoiceBox fx:id="signalTypeChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                                              <Label text="Speaker Name" GridPane.rowIndex="1" />
-                                                                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                           </children>
-                                                                           <padding>
-                                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                                           </padding>
-                                                                        </GridPane>
-                                                                     </children>
-                                                                  </AnchorPane>
-                                                              </items>
-                                                            </SplitPane>
-                                                            <Button fx:id="removeSignalBtn" layoutX="37.0" layoutY="168.0" mnemonicParsing="false" text="-" />
-                                                            <Button fx:id="addSignalBtn" layoutX="10.0" layoutY="168.0" mnemonicParsing="false" text="+" />
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </TitledPane>
-                                             </panes>
-                                          </Accordion>
-                                      </items>
-                                    </SplitPane>
-                                 </children>
-                              </AnchorPane>
-                          </items>
-                        </SplitPane>
-                        <Button fx:id="addBeatBtn" layoutX="10.0" layoutY="481.0" mnemonicParsing="false" text="+" />
-                        <Button fx:id="removeBeatBtn" layoutX="37.0" layoutY="481.0" mnemonicParsing="false" text="-" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </center>
-   <bottom>
-      <Button fx:id="saveExportBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="989.0" text="SAVE/EXPORT" BorderPane.alignment="CENTER" />
-   </bottom>
+                                            <children>
+                                                <Label text="Id" />
+                                                <TextField fx:id="sceneId" GridPane.columnIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                                    </GridPane.margin>
+                                                </TextField>
+                                                <Label text="Title" GridPane.rowIndex="1" />
+                                                <TextArea fx:id="sceneTitle" prefHeight="260.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                    <GridPane.margin>
+                                                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                                    </GridPane.margin>
+                                                </TextArea>
+                                            </children>
+                                        </GridPane>
+                                        <TitledPane animated="false" collapsible="false" text="Timing" GridPane.columnIndex="1">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                    <children>
+                                                        <GridPane hgap="5.0" layoutX="21.4" layoutY="20.4" vgap="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                                            <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="183.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="187.0" />
+                                                            </columnConstraints>
+                                                            <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            </rowConstraints>
+                                                            <children>
+                                                                <Label text="Scene Arena" />
+                                                                <Label prefHeight="17.0" prefWidth="79.0" text="Scene Plays" GridPane.rowIndex="1" />
+                                                                <Label text="Scene For Character" GridPane.rowIndex="2" />
+                                                                <ChoiceBox fx:id="sceneArenaChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                                <ChoiceBox fx:id="scenePositionChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                <ChoiceBox fx:id="sceneCharacterChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            </children>
+                                                        </GridPane>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                            <GridPane.margin>
+                                                <Insets />
+                                            </GridPane.margin>
+                                        </TitledPane>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Scene">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <GridPane hgap="10.0" layoutX="8.0" layoutY="9.0" prefHeight="70.0" prefWidth="878.0" vgap="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Background" />
+                                        <Label text="Change Background Time" GridPane.rowIndex="1" />
+                                        <Label text="Scene Fade In Time" GridPane.columnIndex="2" />
+                                        <Label text="Scene Fade Out Time" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <TextField fx:id="changeBackgroundTime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField fx:id="fadeInTime" GridPane.columnIndex="3" />
+                                        <TextField fx:id="fadeOutTime" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <ChoiceBox fx:id="sceneBackgroundChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                    </children>
+                                </GridPane>
+                                <Accordion layoutY="79.0" />
+                                <GridPane hgap="15.0" layoutX="15.0" layoutY="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <CustomVBoxControl.ActorInfo title="Actor Right Properties" />
+                                        <CustomVBoxControl.ActorInfo title="Actor Left Properties" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Beats">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane dividerPositions="0.2437357630979499" layoutX="53.0" layoutY="68.0" prefHeight="472.0" prefWidth="880.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="210.0">
+                                            <children>
+                                                <ScrollPane layoutX="-17.0" layoutY="38.0" maxHeight="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <content>
+                                                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="205.0">
+                                                            <children>
+                                                                <ListView fx:id="beatsList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </content>
+                                                </ScrollPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="660.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.5, 0.5170940170940171" layoutX="250.0" layoutY="135.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <items>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                            <children>
+                                                                <Accordion layoutX="228.0" layoutY="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <panes>
+                                                                        <TitledPane animated="false" collapsible="false" text="Speech">
+                                                                            <content>
+                                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                                    <children>
+                                                                                        <GridPane hgap="10.0" layoutX="23.4" layoutY="20.4" prefHeight="181.0" prefWidth="633.0" vgap="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                                                            <columnConstraints>
+                                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                            </columnConstraints>
+                                                                                            <rowConstraints>
+                                                                                                <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                                                                                                <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
+                                                                                            </rowConstraints>
+                                                                                            <children>
+                                                                                                <Label prefHeight="17.0" prefWidth="135.0" text="Speaker" />
+                                                                                                <Label prefHeight="17.0" prefWidth="89.0" text="Text" GridPane.rowIndex="1" />
+                                                                                                <TextArea fx:id="beatText" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                                <ChoiceBox fx:id="speakerChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                                                            </children>
+                                                                                        </GridPane>
+                                                                                    </children>
+                                                                                </AnchorPane>
+                                                                            </content>
+                                                                        </TitledPane>
+                                                                    </panes>
+                                                                </Accordion>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                                        <Accordion>
+                                                            <panes>
+                                                                <TitledPane animated="false" collapsible="false" text="Signals">
+                                                                    <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                            <children>
+                                                                                <SplitPane dividerPositions="0.20026050146532073" layoutX="21.4" layoutY="20.4" prefHeight="168.0" prefWidth="637.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                    <items>
+                                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                            <children>
+                                                                                                <ListView fx:id="beatSignalsList" prefHeight="164.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0" />
+                                                                                            </children>
+                                                                                        </AnchorPane>
+                                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                            <children>
+                                                                                                <GridPane fx:id="signalParamsGrid" hgap="10.0" layoutX="153.0" layoutY="34.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                                    <columnConstraints>
+                                                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                                    </columnConstraints>
+                                                                                                    <rowConstraints>
+                                                                                                        <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                                                                                        <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                                                                                                        <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                                                                                                    </rowConstraints>
+                                                                                                    <children>
+                                                                                                        <Label text="Signal Type" />
+                                                                                                        <Label text="Signal Params" GridPane.rowIndex="2" />
+                                                                                                        <ChoiceBox fx:id="signalTypeChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                                                                        <Label text="Speaker Name" GridPane.rowIndex="1" />
+                                                                                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                                    </children>
+                                                                                                    <padding>
+                                                                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                                                                    </padding>
+                                                                                                </GridPane>
+                                                                                            </children>
+                                                                                        </AnchorPane>
+                                                                                    </items>
+                                                                                </SplitPane>
+                                                                                <Button fx:id="removeSignalBtn" layoutX="37.0" layoutY="168.0" mnemonicParsing="false" text="-" />
+                                                                                <Button fx:id="addSignalBtn" layoutX="10.0" layoutY="168.0" mnemonicParsing="false" text="+" />
+                                                                            </children>
+                                                                        </AnchorPane>
+                                                                    </content>
+                                                                </TitledPane>
+                                                            </panes>
+                                                        </Accordion>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                                <Button fx:id="addBeatBtn" layoutX="10.0" layoutY="481.0" mnemonicParsing="false" text="+" />
+                                <Button fx:id="removeBeatBtn" layoutX="37.0" layoutY="481.0" mnemonicParsing="false" text="-" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+    <bottom>
+        <Button fx:id="saveExportBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="989.0" text="SAVE/EXPORT" BorderPane.alignment="CENTER" />
+    </bottom>
 </BorderPane>

@@ -21,9 +21,9 @@ public class DialogueActorInfo {
     @JsonProperty("name")
     private String actorName;
     @JsonProperty("change_model_time")
-    private BigDecimal changeModelTime;
+    private BigDecimal changeModelTime = new BigDecimal("1.5");
     @JsonProperty("dim_time")
-    private BigDecimal actorDimTime;
+    private BigDecimal actorDimTime = new BigDecimal("0.7");
     @JsonProperty("move_time")
-    private BigDecimal actorMoveTime;
+    private BigDecimal actorMoveTime = new BigDecimal("1.5");
 }

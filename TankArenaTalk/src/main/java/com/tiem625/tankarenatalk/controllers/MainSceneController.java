@@ -5,9 +5,11 @@
  */
 package com.tiem625.tankarenatalk.controllers;
 
+import com.tiem625.tankarenatalk.constants.GUIScenes;
 import com.tiem625.tankarenatalk.utils.Dialogs;
 import com.tiem625.tankarenatalk.utils.ModelFileAdapter;
 import com.tiem625.tankarenatalk.utils.ModelHolder;
+import com.tiem625.tankarenatalk.utils.GUIScene;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -29,6 +32,8 @@ public class MainSceneController implements Initializable {
     private FileChooser fileChooser;
     @FXML
     private Pane rootPane;
+    
+    private Stage makerStage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,9 +58,11 @@ public class MainSceneController implements Initializable {
         try {
             ModelHolder.model = ModelFileAdapter.fromFileString(json);
             //call next thing
-            Dialogs.infoDialog(rootPane.getScene().getWindow(), ModelHolder.model.toString())
-                    .showAndWait();
-            
+            if (makerStage == null) {
+                makerStage = new Stage();
+                makerStage.setScene(GUIScene.initScene(GUIScenes.DIALOGUE_MAKER).getScene());
+            }
+            makerStage.showAndWait();
             
         } catch (Throwable ex) {
             ex.printStackTrace();

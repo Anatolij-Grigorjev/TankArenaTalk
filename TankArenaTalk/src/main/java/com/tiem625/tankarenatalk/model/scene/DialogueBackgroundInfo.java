@@ -19,11 +19,11 @@ public class DialogueBackgroundInfo {
     @JsonProperty("background")
     private DialogueCharacterId backgroundImage;
     @JsonProperty("start_time")
-    private BigDecimal startTime;
+    private BigDecimal startTime = new BigDecimal("1.5");
     @JsonProperty("end_time")
-    private BigDecimal endTime;
+    private BigDecimal endTime = new BigDecimal("1.5");
     @JsonProperty("change_bg_time")
-    private BigDecimal changeTime;
+    private BigDecimal changeTime = BigDecimal.ONE;
     @JsonProperty("actor_left")
     private DialogueActorInfo leftActor;
     @JsonProperty("actor_right")

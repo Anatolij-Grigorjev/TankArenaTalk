@@ -5,6 +5,7 @@
  */
 package com.tiem625.tankarenatalk.constants;
 
+import com.tiem625.tankarenatalk.controllers.DialogueMakerController;
 import com.tiem625.tankarenatalk.controllers.MainSceneController;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +17,8 @@ import lombok.Getter;
  */
 public enum GUIScenes {
     
-    MAIN_MENU("/fxml/main_menu.fxml", MainSceneController.class, Collections.EMPTY_LIST);
+    MAIN_MENU("/fxml/main_menu.fxml", MainSceneController.class, Collections.EMPTY_LIST),
+    DIALOGUE_MAKER("/fxml/dialogue_maker.fxml", DialogueMakerController.class, Collections.EMPTY_LIST);
     
     @Getter
     private final List<String> stylesheetPaths;
