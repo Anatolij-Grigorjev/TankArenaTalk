@@ -15,7 +15,8 @@ import com.tiem625.tankarenatalk.constants.enums.timing.DialoguePosition;
 import com.tiem625.tankarenatalk.model.DialogueScene;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeat;
 import com.tiem625.tankarenatalk.model.scene.DialogueBackgroundInfo;
-java.util.ResourceBundle;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -107,7 +108,6 @@ public class DialogueMakerController implements Initializable {
                 && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getBackgroundImage() : null);
         changeBackgroundTime.setValue(model != null
                 && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getChangeTime() : DialogueBackgroundInfo.DEFAULT_CHANGE_TIME);
-        
 
     }
 
