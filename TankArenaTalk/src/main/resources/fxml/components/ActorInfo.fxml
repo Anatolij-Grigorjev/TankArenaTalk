@@ -23,8 +23,8 @@
                             <PositiveDecimalInputField fx:id="actorMoveTime" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             <PositiveDecimalInputField fx:id="actorDimTime" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             <PositiveDecimalInputField fx:id="actorCharName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                            <EnumChoiceBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" 
-                                           enumClass="com.tiem625.tankarenatalk.contants.enums.DialogueCharacterId" />
+                            <EnumChoiceBox enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueCharacterId" 
+                                           maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"/>
                         </children>
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

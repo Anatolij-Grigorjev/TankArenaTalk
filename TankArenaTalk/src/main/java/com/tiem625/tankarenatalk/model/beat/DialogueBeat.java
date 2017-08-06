@@ -5,6 +5,7 @@
  */
 package com.tiem625.tankarenatalk.model.beat;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 
@@ -14,6 +15,6 @@ import lombok.Data;
  */
 @Data
 public class DialogueBeat {
-    private DialogueBeatSpeech speech;
-    private List<DialogueBeatSignal> signals;
+    private DialogueBeatSpeech speech = new DialogueBeatSpeech();
+    private List<DialogueBeatSignal> signals = new ArrayList<>();
 }

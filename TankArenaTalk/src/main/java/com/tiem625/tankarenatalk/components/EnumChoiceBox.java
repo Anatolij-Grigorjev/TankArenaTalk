@@ -5,6 +5,8 @@
  */
 package com.tiem625.tankarenatalk.components;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.NamedArg;
 import javafx.scene.control.ChoiceBox;
 
@@ -19,9 +21,13 @@ public class EnumChoiceBox<T extends Enum<T>> extends ChoiceBox<T> {
         setConverter(new ObservableEnumList.Converter<>(enumClazz));
     }
     
-    public EnumChoiceBox(@NamedArg("enumClass") String enumClazz) throws ClassNotFoundException {  
+    public EnumChoiceBox(@NamedArg("enumClass") String enumClazz) {  
         super();
-        setEnumClass((Class<T>) Class.forName(enumClazz));
+        try {
+            setEnumClass((Class<T>) Class.forName(enumClazz));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnumChoiceBox.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

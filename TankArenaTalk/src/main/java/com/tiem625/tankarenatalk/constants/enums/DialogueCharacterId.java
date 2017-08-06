@@ -7,6 +7,7 @@ package com.tiem625.tankarenatalk.constants.enums;
 
 import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
 import com.tiem625.tankarenatalk.constants.ConstantsUtils;
+import com.tiem625.tankarenatalk.constants.DisplayableEnum;
 import com.tiem625.tankarenatalk.constants.enums.timing.DialogueCharacter;
 import lombok.Getter;
 
@@ -14,17 +15,20 @@ import lombok.Getter;
  *
  * @author Anatolij
  */
-public enum DialogueCharacterId implements CodeAwareEnum {
+public enum DialogueCharacterId implements CodeAwareEnum, DisplayableEnum {
     
-    CLETUS(getIdFromCharacter(DialogueCharacter.CLETUS)), 
-    LUGNUT(getIdFromCharacter(DialogueCharacter.LUGNUT));
+    CLETUS(getIdFromCharacter(DialogueCharacter.CLETUS), "Cletus"), 
+    LUGNUT(getIdFromCharacter(DialogueCharacter.LUGNUT), "Lugnut");
     
     private static final String ID_PREFIX = "!id;";
     @Getter
     private String code;
+    @Getter
+    private String displayName;
     
-    private DialogueCharacterId(String code) {
+    private DialogueCharacterId(String code, String displayName) {
         this.code = code;
+        this.displayName = displayName;
     }
     
     public static DialogueCharacterId forCharacter(DialogueCharacter character) {

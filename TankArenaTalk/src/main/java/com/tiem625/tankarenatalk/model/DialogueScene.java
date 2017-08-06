@@ -9,6 +9,8 @@ import com.tiem625.tankarenatalk.model.scene.DialogueBackgroundInfo;
 import com.tiem625.tankarenatalk.model.scene.DialogueSceneTiming;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeat;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import lombok.Data;
 
@@ -20,9 +22,9 @@ import lombok.Data;
 public class DialogueScene {
     private String id;
     private String name;
-    private DialogueSceneTiming timing;
+    private DialogueSceneTiming timing = new DialogueSceneTiming();
     @JsonProperty("scene")
-    private DialogueBackgroundInfo backgroundInfo;
+    private DialogueBackgroundInfo backgroundInfo = new DialogueBackgroundInfo();
     @JsonProperty("beats")
-    private List<DialogueBeat> dialogueBeats;
+    private List<DialogueBeat> dialogueBeats = new ArrayList<>();
 }

@@ -6,6 +6,7 @@
 package com.tiem625.tankarenatalk.controllers;
 
 import com.tiem625.tankarenatalk.constants.GUIScenes;
+import com.tiem625.tankarenatalk.model.DialogueScene;
 import com.tiem625.tankarenatalk.utils.Dialogs;
 import com.tiem625.tankarenatalk.utils.ModelFileAdapter;
 import com.tiem625.tankarenatalk.utils.ModelHolder;
@@ -28,11 +29,11 @@ import javafx.stage.Stage;
  * @author Anatolij
  */
 public class MainSceneController implements Initializable {
-    
+
     private FileChooser fileChooser;
     @FXML
     private Pane rootPane;
-    
+
     private Stage makerStage;
 
     @Override
@@ -44,36 +45,53 @@ public class MainSceneController implements Initializable {
                 new FileChooser.ExtensionFilter("All Files ", "*.*")
         );
     }
-    
+
     @FXML
     private void editDialogueFile() throws IOException {
-        
+
         File dialogJson = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
         //no file selected
-        if (dialogJson == null) return;
-        
+        if (dialogJson == null) {
+            return;
+        }
+
         String json = new String(Files.readAllBytes(dialogJson.toPath()), StandardCharsets.UTF_8);
         System.out.println("Got json string: " + json);
-        
+
         try {
             ModelHolder.model = ModelFileAdapter.fromFileString(json);
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+            Alert dialog = Dialogs.exceptionDialogue(rootPane.getScene().getWindow(), ex);
+            dialog.showAndWait();
+        }
+
+        openDialogueMakerWindow();
+    }
+
+    @FXML
+    private void createDialogueFile() {
+       
+        ModelHolder.model = new DialogueScene();
+        
+        openDialogueMakerWindow();
+        
+    }
+
+    private void openDialogueMakerWindow() {
+        try {
             //call next thing
             if (makerStage == null) {
                 makerStage = new Stage();
                 makerStage.setScene(GUIScene.initScene(GUIScenes.DIALOGUE_MAKER).getScene());
             }
             makerStage.showAndWait();
-            
         } catch (Throwable ex) {
             ex.printStackTrace();
             Alert dialog = Dialogs.exceptionDialogue(rootPane.getScene().getWindow(), ex);
             dialog.showAndWait();
         }
     }
-    
-    @FXML
-    private void createDialogueFile() {
-        
-    }
-    
+
 }

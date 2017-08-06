@@ -25,7 +25,7 @@ public class DialogueBackgroundInfo {
     @JsonProperty("change_bg_time")
     private BigDecimal changeTime = BigDecimal.ONE;
     @JsonProperty("actor_left")
-    private DialogueActorInfo leftActor;
+    private DialogueActorInfo leftActor = new DialogueActorInfo();
     @JsonProperty("actor_right")
-    private DialogueActorInfo rightActor;
+    private DialogueActorInfo rightActor = new DialogueActorInfo();
 }
