@@ -6,6 +6,7 @@
 package com.tiem625.tankarenatalk.components;
 
 import com.tiem625.tankarenatalk.controllers.ActorInfoController;
+import com.tiem625.tankarenatalk.controllers.DialogueBeatInfoController;
 import java.io.IOException;
 import javafx.beans.NamedArg;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,14 @@ public abstract class CustomVBoxControl extends VBox {
         
         public ActorInfo(@NamedArg("title") String title) {
             super("/fxml/components/ActorInfo.fxml", new ActorInfoController(title));
+        }
+        
+    }
+    
+    public static class DialogueBeatInfo extends CustomVBoxControl {
+        
+        public DialogueBeatInfo() {
+            super("/fxml/components/DialogueBeatInfo", new DialogueBeatInfoController());
         }
         
     }

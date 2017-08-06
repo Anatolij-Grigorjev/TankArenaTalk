@@ -16,14 +16,20 @@ import lombok.Data;
  */
 @Data
 public class DialogueActorInfo {
+    
+    public static final BigDecimal DEFAULT_CHANGE_MODEL_TIME = new BigDecimal("1.5");
+    public static final BigDecimal DEFAULT_DIM_TIME = new BigDecimal("0.7");
+    public static final BigDecimal DEFAULT_ACTOR_MOVE_TIME = new BigDecimal("1.5");
+    
+    
     @JsonProperty("char_model")
     private DialogueCharacterId characterModel;
     @JsonProperty("name")
     private String actorName;
     @JsonProperty("change_model_time")
-    private BigDecimal changeModelTime = new BigDecimal("1.5");
+    private BigDecimal changeModelTime = DEFAULT_CHANGE_MODEL_TIME;
     @JsonProperty("dim_time")
-    private BigDecimal actorDimTime = new BigDecimal("0.7");
+    private BigDecimal actorDimTime = DEFAULT_DIM_TIME;
     @JsonProperty("move_time")
-    private BigDecimal actorMoveTime = new BigDecimal("1.5");
+    private BigDecimal actorMoveTime = DEFAULT_ACTOR_MOVE_TIME;
 }
