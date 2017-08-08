@@ -17,8 +17,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -36,7 +37,7 @@ public class DialogueBeatInfoController implements Initializable {
     @FXML
     private EnumChoiceBox<DialogueSpeakerLocation> speakerChoice;
     @FXML
-    private ListView<DialogueBeatSignal> beatSignals;
+    private ListView<DialogueBeatSignal> beatSignalsList;
     @FXML
     private EnumChoiceBox<DialogueSignalType> signalTypeChoice;
     @FXML
@@ -48,7 +49,21 @@ public class DialogueBeatInfoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        beatSignalsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        beatSignalsList.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, signal, prevSignal) -> {
+                    refreshSignalView(signal);
+                });
+        removeSignalBtn.onActionProperty().addListener(click -> {
+            if (!beatSignalsList.getSelectionModel().isEmpty()) {
+                int selectedIdx = beatSignalsList.getSelectionModel().getSelectedIndex();
+                beatSignalsList.getItems().remove(selectedIdx);
+            }
+        });
+        addSignalBtn.onActionProperty().addListener(click -> {
+            beatSignalsList.getItems().add(new DialogueBeatSignal());
+        });
     }
 
     public void setValue(DialogueBeat beatInfo) {
@@ -62,25 +77,16 @@ public class DialogueBeatInfoController implements Initializable {
                 && model.getSpeech() != null ? model.getSpeech().getBeatText() : "");
         speakerName.setText(model != null
                 && model.getSpeech() != null ? model.getSpeech().getBeatSpeakerName() : "");
-        speakerChoice.setValue(model != null 
-            && model.getSpeech() != null? model.getSpeech().getSpeakerLocation() : null);
-        beatSignals.setItems(new ObservableListWrapper<>(
-                model != null? model.getSignals() : new ArrayList<>())
+        speakerChoice.setValue(model != null
+                && model.getSpeech() != null ? model.getSpeech().getSpeakerLocation() : null);
+        beatSignalsList.setItems(new ObservableListWrapper<>(
+                model != null ? model.getSignals() : new ArrayList<>())
         );
-        DialogueBeatSignal currentSignal = beatSignals.getItems().isEmpty()?
-                null : beatSignals.getItems().get(0);
-        signalTypeChoice.setValue(currentSignal != null? currentSignal.getSignalType() : null);
-        
-        removeSignalBtn.onActionProperty().addListener(click -> {
-            if (!beatSignals.getSelectionModel().isEmpty()) {
-                int selectedIdx = beatSignals.getSelectionModel().getSelectedIndex();
-                beatSignals.getItems().remove(selectedIdx);
-            }
-        });
-        addSignalBtn.onActionProperty().addListener(click -> {
-            beatSignals.getItems().add(new DialogueBeatSignal());
-        });
-        
+        beatSignalsList.getSelectionModel().selectFirst();  
+    }
+    
+    private void refreshSignalView(DialogueBeatSignal signal) {
+        signalTypeChoice.setValue(signal != null ? signal.getSignalType() : null);
     }
 
 }

@@ -34,6 +34,7 @@ public class MainSceneController implements Initializable {
     @FXML
     private Pane rootPane;
 
+    private GUIScene<DialogueMakerController> makerScene;
     private Stage makerStage;
 
     @Override
@@ -67,7 +68,7 @@ public class MainSceneController implements Initializable {
             dialog.showAndWait();
         }
 
-        openDialogueMakerWindow();
+        openDialogueMakerWindow(ModelHolder.model);
     }
 
     @FXML
@@ -75,17 +76,19 @@ public class MainSceneController implements Initializable {
        
         ModelHolder.model = new DialogueScene();
         
-        openDialogueMakerWindow();
+        openDialogueMakerWindow(ModelHolder.model);
         
     }
 
-    private void openDialogueMakerWindow() {
+    private void openDialogueMakerWindow(DialogueScene model) {
         try {
             //call next thing
-            if (makerStage == null) {
+            if (makerStage == null || makerScene == null) {
                 makerStage = new Stage();
-                makerStage.setScene(GUIScene.initScene(GUIScenes.DIALOGUE_MAKER).getScene());
+                makerScene = GUIScene.initScene(GUIScenes.DIALOGUE_MAKER);
+                makerStage.setScene(makerScene.getScene());
             }
+            makerScene.getController().setValue(model);
             makerStage.showAndWait();
         } catch (Throwable ex) {
             ex.printStackTrace();

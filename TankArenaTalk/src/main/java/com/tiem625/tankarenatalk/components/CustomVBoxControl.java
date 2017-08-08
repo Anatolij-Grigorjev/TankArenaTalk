@@ -23,10 +23,16 @@ public abstract class CustomVBoxControl extends VBox {
     protected Object controller;
     
     public CustomVBoxControl(String fxmlPath, Object controller) {
+        this(fxmlPath, true, controller);
+    }
+    
+    public CustomVBoxControl(String fxmlPath, boolean doRoot, Object controller) {
         super();
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
-        fxmlLoader.setRoot(this);
+        if (doRoot) {
+            fxmlLoader.setRoot(this);
+        }
         fxmlLoader.setController(controller);
         this.controller = controller;
         
@@ -53,7 +59,7 @@ public abstract class CustomVBoxControl extends VBox {
     public static class DialogueBeatInfo extends CustomVBoxControl {
         
         public DialogueBeatInfo() {
-            super("/fxml/components/DialogueBeatInfo.fxml", new DialogueBeatInfoController());
+            super("/fxml/components/DialogueBeatInfo.fxml", false, new DialogueBeatInfoController());
         }
         
         public void setValue(DialogueBeat beatInfo) {

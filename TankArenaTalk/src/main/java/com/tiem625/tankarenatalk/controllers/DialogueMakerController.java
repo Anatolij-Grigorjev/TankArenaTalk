@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -90,6 +91,38 @@ public class DialogueMakerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
        exportDialog = new FileChooser();
        exportDialog.setTitle("Save the dialog to...");
+        
+       beatsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+       beatsList.getSelectionModel().selectedItemProperty().addListener(
+               (obs, beat, prevBeat) -> {
+                   dialogueBeatInfo.setValue(beat);
+               }
+       );
+       
+       addBeatBtn.onActionProperty().addListener(click -> {
+            beatsList.getItems().add(new DialogueBeat());
+        });
+        removeBeatBtn.onActionProperty().addListener(click -> {
+            if (!beatsList.getSelectionModel().isEmpty()) {
+                int selectedIdx = beatsList.getSelectionModel().getSelectedIndex();
+                beatsList.getItems().remove(selectedIdx);
+            }
+        });
+        
+        //BIG EXPORT BUTTON
+        saveExportBtn.onActionProperty().addListener(click -> {
+            try {
+                String exportedDialog = ModelFileAdapter.toFileString(
+                        ModelHolder.model
+                );
+                exportDialog.setInitialFileName(sceneId.getText());
+                exportDialog.showSaveDialog(rootPane.getScene().getWindow());
+            } catch (JsonProcessingException ex) {
+                ex.printStackTrace();
+                Dialogs.exceptionDialogue(rootPane.getScene().getWindow(), ex)
+                        .showAndWait();
+            }
+        });
        
     }
 
@@ -133,32 +166,7 @@ public class DialogueMakerController implements Initializable {
         beatsList.setItems(new ObservableListWrapper<>(
                 model != null ? model.getDialogueBeats() : new ArrayList<>())
         );
-        DialogueBeat currentBeat = beatsList.getItems().isEmpty()? null : beatsList.getItems().get(0);
-        dialogueBeatInfo.setValue(currentBeat);
-        addBeatBtn.onActionProperty().addListener(click -> {
-            beatsList.getItems().add(new DialogueBeat());
-        });
-        removeBeatBtn.onActionProperty().addListener(click -> {
-            if (!beatsList.getSelectionModel().isEmpty()) {
-                int selectedIdx = beatsList.getSelectionModel().getSelectedIndex();
-                beatsList.getItems().remove(selectedIdx);
-            }
-        });
-        
-        //BIG EXPORT BUTTON
-        saveExportBtn.onActionProperty().addListener(click -> {
-            try {
-                String exportedDialog = ModelFileAdapter.toFileString(
-                        ModelHolder.model
-                );
-                exportDialog.setInitialFileName(sceneId.getText());
-                exportDialog.showSaveDialog(rootPane.getScene().getWindow());
-            } catch (JsonProcessingException ex) {
-                ex.printStackTrace();
-                Dialogs.exceptionDialogue(rootPane.getScene().getWindow(), ex)
-                        .showAndWait();
-            }
-        });
+        beatsList.getSelectionModel().selectFirst();        
     }
 
 }

@@ -146,7 +146,7 @@
                                                 </ScrollPane>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="660.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="660.0">
                                             <children>
                                                 <CustomVBoxControl.DialogueBeatInfo fx:id="dialogueBeatInfo" />
                                             </children>
