@@ -7,7 +7,7 @@ package com.tiem625.tankarenatalk.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sun.javafx.collections.ObservableListWrapper;
-import com.tiem625.tankarenatalk.components.CustomVBoxControl;
+import com.tiem625.tankarenatalk.components.CustomPaneControl;
 import com.tiem625.tankarenatalk.components.EnumChoiceBox;
 import com.tiem625.tankarenatalk.components.PositiveDecimalInputField;
 import com.tiem625.tankarenatalk.constants.enums.DialogueCharacterId;
@@ -71,16 +71,16 @@ public class DialogueMakerController implements Initializable {
     @FXML
     private PositiveDecimalInputField fadeOutTime;
     @FXML
-    private CustomVBoxControl.ActorInfo actorLeftInfo;
+    private CustomPaneControl.ActorInfo actorLeftInfo;
     @FXML
-    private CustomVBoxControl.ActorInfo actorRightInfo;
+    private CustomPaneControl.ActorInfo actorRightInfo;
     //-----------------------------------------------------------//
 
     //BEATS TAB
     @FXML
     private ListView<DialogueBeat> beatsList;
-    @FXML
-    private CustomVBoxControl.DialogueBeatInfo dialogueBeatInfo;
+//    @FXML
+//    private CustomPaneControl.DialogueBeatInfo dialogueBeatInfo;
     @FXML
     private Button addBeatBtn;
     @FXML
@@ -93,16 +93,16 @@ public class DialogueMakerController implements Initializable {
        exportDialog.setTitle("Save the dialog to...");
         
        beatsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-       beatsList.getSelectionModel().selectedItemProperty().addListener(
-               (obs, beat, prevBeat) -> {
-                   dialogueBeatInfo.setValue(beat);
-               }
-       );
+//       beatsList.getSelectionModel().selectedItemProperty().addListener(
+//               (obs, beat, prevBeat) -> {
+//                   dialogueBeatInfo.setValue(beat);
+//               }
+//       );
        
-       addBeatBtn.onActionProperty().addListener(click -> {
+       addBeatBtn.setOnAction(click -> {
             beatsList.getItems().add(new DialogueBeat());
         });
-        removeBeatBtn.onActionProperty().addListener(click -> {
+        removeBeatBtn.setOnAction(click -> {
             if (!beatsList.getSelectionModel().isEmpty()) {
                 int selectedIdx = beatsList.getSelectionModel().getSelectedIndex();
                 beatsList.getItems().remove(selectedIdx);
@@ -110,7 +110,7 @@ public class DialogueMakerController implements Initializable {
         });
         
         //BIG EXPORT BUTTON
-        saveExportBtn.onActionProperty().addListener(click -> {
+        saveExportBtn.setOnAction(click -> {
             try {
                 String exportedDialog = ModelFileAdapter.toFileString(
                         ModelHolder.model
@@ -163,9 +163,9 @@ public class DialogueMakerController implements Initializable {
                 && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getRightActor(): null);
         
         //BEATS TAB
-        beatsList.setItems(new ObservableListWrapper<>(
-                model != null ? model.getDialogueBeats() : new ArrayList<>())
-        );
+        if (model != null && model.getDialogueBeats() != null) {
+            beatsList.getItems().addAll(model.getDialogueBeats());
+        }
         beatsList.getSelectionModel().selectFirst();        
     }
 

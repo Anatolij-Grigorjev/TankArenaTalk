@@ -55,13 +55,13 @@ public class DialogueBeatInfoController implements Initializable {
                 .addListener((observable, signal, prevSignal) -> {
                     refreshSignalView(signal);
                 });
-        removeSignalBtn.onActionProperty().addListener(click -> {
+        removeSignalBtn.setOnAction(click -> {
             if (!beatSignalsList.getSelectionModel().isEmpty()) {
                 int selectedIdx = beatSignalsList.getSelectionModel().getSelectedIndex();
                 beatSignalsList.getItems().remove(selectedIdx);
             }
         });
-        addSignalBtn.onActionProperty().addListener(click -> {
+        addSignalBtn.setOnAction(click -> {
             beatSignalsList.getItems().add(new DialogueBeatSignal());
         });
     }
@@ -79,9 +79,9 @@ public class DialogueBeatInfoController implements Initializable {
                 && model.getSpeech() != null ? model.getSpeech().getBeatSpeakerName() : "");
         speakerChoice.setValue(model != null
                 && model.getSpeech() != null ? model.getSpeech().getSpeakerLocation() : null);
-        beatSignalsList.setItems(new ObservableListWrapper<>(
-                model != null ? model.getSignals() : new ArrayList<>())
-        );
+        if (model != null && model.getSignals() != null) {
+           beatSignalsList.getItems().addAll(model.getSignals());
+        }
         beatSignalsList.getSelectionModel().selectFirst();  
     }
     

@@ -12,21 +12,21 @@ import com.tiem625.tankarenatalk.model.scene.DialogueActorInfo;
 import java.io.IOException;
 import javafx.beans.NamedArg;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Pane;
 
 /**
  *
  * @author Anatolij
  */
-public abstract class CustomVBoxControl extends VBox {
+public abstract class CustomPaneControl extends Pane {
     
     protected Object controller;
     
-    public CustomVBoxControl(String fxmlPath, Object controller) {
+    public CustomPaneControl(String fxmlPath, Object controller) {
         this(fxmlPath, true, controller);
     }
     
-    public CustomVBoxControl(String fxmlPath, boolean doRoot, Object controller) {
+    public CustomPaneControl(String fxmlPath, boolean doRoot, Object controller) {
         super();
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -44,7 +44,7 @@ public abstract class CustomVBoxControl extends VBox {
     }
     
     
-    public static class ActorInfo extends CustomVBoxControl {
+    public static class ActorInfo extends CustomPaneControl {
         
         public ActorInfo(@NamedArg("title") String title) {
             super("/fxml/components/ActorInfo.fxml", new ActorInfoController(title));
@@ -56,16 +56,16 @@ public abstract class CustomVBoxControl extends VBox {
         
     }
     
-    public static class DialogueBeatInfo extends CustomVBoxControl {
-        
-        public DialogueBeatInfo() {
-            super("/fxml/components/DialogueBeatInfo.fxml", false, new DialogueBeatInfoController());
-        }
-        
-        public void setValue(DialogueBeat beatInfo) {
-            ((DialogueBeatInfoController)controller).setValue(beatInfo);
-        }
-        
-    }
+//    public static class DialogueBeatInfo extends CustomPaneControl {
+//        
+//        public DialogueBeatInfo() {
+//            super("/fxml/components/DialogueBeatInfo.fxml", true, new DialogueBeatInfoController());
+//        }
+//        
+//        public void setValue(DialogueBeat beatInfo) {
+//            ((DialogueBeatInfoController)controller).setValue(beatInfo);
+//        }
+//        
+//    }
     
 }
