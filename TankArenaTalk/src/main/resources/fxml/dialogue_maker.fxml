@@ -131,113 +131,109 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <SplitPane dividerPositions="0.2437357630979499" layoutX="53.0" layoutY="68.0" prefHeight="472.0" prefWidth="880.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                    <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="210.0">
-                                            <children>
-                                                <ScrollPane layoutX="-17.0" layoutY="38.0" maxHeight="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <content>
-                                                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200" minWidth="205" prefWidth="205.0">
-                                                            <children>
-                                                                <ListView fx:id="beatsList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                            </children>
-                                                        </AnchorPane>
-                                                    </content>
-                                                </ScrollPane>
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="660.0">
-                                            <children>
-                                                <SplitPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" dividerPositions="0.5, 0.5170940170940171" layoutX="250.0" layoutY="135.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <items>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205" prefWidth="160.0">
-                                                            <children>
-                                                                <Accordion layoutX="228.0" layoutY="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                    <panes>
-                                                                        <TitledPane animated="false" collapsible="false" text="Speech">
-                                                                            <content>
-                                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205.0" prefWidth="200.0">
-                                                                                    <children>
-                                                                                        <GridPane hgap="10.0" layoutX="31.4" layoutY="19.4" prefHeight="173.0" prefWidth="615.0" vgap="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="9.0">
-                                                                                            <columnConstraints>
-                                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                                            </columnConstraints>
-                                                                                            <rowConstraints>
-                                                                                                <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-                                                                                                <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
-                                                                                            </rowConstraints>
-                                                                                            <children>
-                                                                                                <Label prefHeight="17.0" prefWidth="135.0" text="Speaker" />
-                                                                                                <Label prefHeight="17.0" prefWidth="89.0" text="Text" GridPane.rowIndex="2" />
-                                                                                                <Label text="Speaker Name" GridPane.rowIndex="1" />
-                                                                                                <TextField fx:id="speakerName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                                                <TextArea fx:id="beatText" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                                                                <EnumChoiceBox fx:id="speakerChoice" enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueSpeakerLocation" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                                                            </children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <bottom>
+                              <HBox BorderPane.alignment="CENTER">
+                                 <children>
+                                            <Button fx:id="addBeatBtn" layoutX="10.0" layoutY="490.0" mnemonicParsing="false" prefWidth="50.0" text="+" />
+                                            <Button fx:id="removeBeatBtn" layoutX="65.0" layoutY="490.0" mnemonicParsing="false" prefWidth="50.0" text="-" />
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <left>
+                                          <ScrollPane prefViewportHeight="474.0" prefViewportWidth="211.0" BorderPane.alignment="CENTER">
+                                              <content>
+                                                  <ListView fx:id="beatsList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="474.0" prefWidth="210.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                              </content>
+                                          </ScrollPane>
+                           </left>
+                           <center>
+                                          <VBox BorderPane.alignment="CENTER">
+                                              <children>
+                                                    <TitledPane animated="false" collapsible="false" text="Speech">
+                                                        <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                                                <children>
+                                                                    <GridPane fx:id="beatPropsGrid" hgap="10.0" layoutX="8.6" layoutY="10.6" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                        <columnConstraints>
+                                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                        </columnConstraints>
+                                                                        <rowConstraints>
+                                                                            <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                                                                            <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
+                                                                            <RowConstraints />
+                                                                        </rowConstraints>
+                                                                        <children>
+                                                                            <Label prefHeight="17.0" prefWidth="135.0" text="Speaker" />
+                                                                            <Label prefHeight="17.0" prefWidth="89.0" text="Text" GridPane.rowIndex="2" />
+                                                                            <Label text="Speaker Name" GridPane.rowIndex="1" />
+                                                                            <TextField fx:id="speakerName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                            <TextArea fx:id="beatText" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                                                <GridPane.margin>
+                                                                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                                                </GridPane.margin>
+                                                                            </TextArea>
+                                                                            <EnumChoiceBox fx:id="speakerChoice" enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueSpeakerLocation" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                                        </children>
+                                                                    </GridPane>
+                                                                </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                    </TitledPane>
+                                                    <TitledPane animated="false" collapsible="false" text="Signals">
+                                                        <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205" prefWidth="200.0">
+                                                                <children>
+                                                                    <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0">
+                                                                        <left>
+                                                                            <ScrollPane prefViewportHeight="150.0" prefViewportWidth="124.0" BorderPane.alignment="CENTER">
+                                                                                <content>
+                                                                                    <ListView fx:id="beatSignalsList" prefHeight="164.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0" />
+                                                                                </content>
+                                                                            </ScrollPane>
+                                                                        </left>
+                                                                        <center>
+                                                                            <GridPane fx:id="signalParamsGrid" hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
+                                                                                <columnConstraints>
+                                                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                    <ColumnConstraints />
+                                                                                </columnConstraints>
+                                                                                <rowConstraints>
+                                                                                    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                                                                    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                                                                                    <RowConstraints maxHeight="122.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                                                                </rowConstraints>
+                                                                                <children>
+                                                                                    <Label text="Signal Type" />
+                                                                                    <Label text="Signal Params" GridPane.rowIndex="1" />
+                                                                                    <EnumChoiceBox fx:id="signalTypeChoice" enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueSignalType" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                                                    <GridPane fx:id="singnalParamsGridPane" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                </children>
+                                                         <BorderPane.margin>
+                                                            <Insets left="5.0" />
+                                                         </BorderPane.margin>
+                                      
                                                                                         </GridPane>
-                                                                                    </children>
-                                                                                </AnchorPane>
-                                                                            </content>
-                                                                        </TitledPane>
-                                                                    </panes>
-                                                                </Accordion>
-                                                            </children>
-                                                        </AnchorPane>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205" prefWidth="160.0" />
-                                                        <Accordion>
-                                                            <panes>
-                                                                <TitledPane animated="false" collapsible="false" text="Signals">
-                                                                    <content>
-                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205" prefWidth="200.0">
-                                                                            <children>
-                                                                                <SplitPane dividerPositions="0.20026050146532073" layoutX="21.4" layoutY="19.4" prefHeight="161.0" prefWidth="637.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="9.0">
-                                                                                    <items>
-                                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205" prefWidth="100.0">
-                                                                                            <children>
-                                                                                                <ListView fx:id="beatSignalsList" prefHeight="164.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0" />
-                                                                                            </children>
-                                                                                        </AnchorPane>
-                                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205" prefWidth="100.0">
-                                                                                            <children>
-                                                                                                <GridPane fx:id="signalParamsGrid" hgap="10.0" layoutX="153.0" layoutY="34.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                                                    <columnConstraints>
-                                                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                                                    </columnConstraints>
-                                                                                                    <rowConstraints>
-                                                                                                        <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                                                                                                        <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                                                                                                        <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
-                                                                                                    </rowConstraints>
-                                                                                                    <children>
-                                                                                                        <Label text="Signal Type" />
-                                                                                                        <Label text="Signal Params" GridPane.rowIndex="2" />
-                                                                                                        <EnumChoiceBox fx:id="signalTypeChoice" enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueSignalType" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                                                                        <GridPane fx:id="singnalParamsGridPane" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-                                                                                                    </children>
-                                                        
-                                                                                                </GridPane>
-                                                                                            </children>
-                                                                                        </AnchorPane>
-                                                                                    </items>
-                                                                                </SplitPane>
-                                                                                <Button fx:id="removeSignalBtn" layoutX="37.0" layoutY="168.0" mnemonicParsing="false" text="-" />
-                                                                                <Button fx:id="addSignalBtn" layoutX="10.0" layoutY="168.0" mnemonicParsing="false" text="+" />
-                                                                            </children>
-                                                                        </AnchorPane>
-                                                                    </content>
-                                                                </TitledPane>
-                                                            </panes>
-                                                        </Accordion>
-                                                    </items>
-                                                </SplitPane>
-                                            </children>
-                                        </AnchorPane>
-                                    </items>
-                                </SplitPane>
-                                <Button fx:id="addBeatBtn" layoutX="10.0" layoutY="490.0" mnemonicParsing="false" text="+" prefWidth="50.0"/>
-                                <Button fx:id="removeBeatBtn" layoutX="65.0" layoutY="490.0" mnemonicParsing="false" text="-" prefWidth="50.0"/>
+                                                                        </center>
+                                                                        <bottom>
+                                                                            <HBox BorderPane.alignment="CENTER">
+                                                                                <children>
+                                                                                    <Button fx:id="addSignalBtn" layoutX="15.0" layoutY="168.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="50.0" text="+" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" />
+                                                                                    <Button fx:id="removeSignalBtn" layoutX="75.0" layoutY="168.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="50.0" text="-" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" />
+                                                                                </children>
+                                                                            </HBox>
+                                                                        </bottom>
+                                                                    </BorderPane>
+                                                                </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                    </TitledPane>
+                                              </children>
+                                          </VBox>
+                           </center>
+                        </BorderPane>
                             </children>
                         </AnchorPane>
                     </content>

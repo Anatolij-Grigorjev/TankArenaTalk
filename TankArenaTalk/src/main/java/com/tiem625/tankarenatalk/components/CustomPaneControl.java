@@ -6,8 +6,6 @@
 package com.tiem625.tankarenatalk.components;
 
 import com.tiem625.tankarenatalk.controllers.ActorInfoController;
-import com.tiem625.tankarenatalk.controllers.DialogueBeatInfoController;
-import com.tiem625.tankarenatalk.model.beat.DialogueBeat;
 import com.tiem625.tankarenatalk.model.scene.DialogueActorInfo;
 import java.io.IOException;
 import javafx.beans.NamedArg;
