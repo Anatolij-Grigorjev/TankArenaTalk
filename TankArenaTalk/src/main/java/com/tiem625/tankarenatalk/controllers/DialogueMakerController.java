@@ -20,7 +20,7 @@ import com.tiem625.tankarenatalk.model.beat.DialogueBeat;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeatSignal;
 import com.tiem625.tankarenatalk.model.scene.DialogueBackgroundInfo;
 import com.tiem625.tankarenatalk.utils.Dialogs;
-import com.tiem625.tankarenatalk.utils.ModelFileAdapter;
+import com.tiem625.tankarenatalk.utils.ModelAdapter;
 import com.tiem625.tankarenatalk.utils.ModelHolder;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -107,6 +107,7 @@ public class DialogueMakerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
         exportDialog = new FileChooser();
         exportDialog.setTitle("Save the dialog to...");
         exportDialog.getExtensionFilters().addAll(
@@ -121,13 +122,15 @@ public class DialogueMakerController implements Initializable {
 
         addBeatBtn.setOnAction(click -> {
             beatsList.getItems().add(new DialogueBeat());
-            //poke grid to awaken layout
-            beatPropsGrid.setLayoutX(beatPropsGrid.getLayoutX() + 0.1);
+            
+            model.setDialogueBeats(beatsList.getItems());
+            
         });
         removeBeatBtn.setOnAction(click -> {
             if (!beatsList.getSelectionModel().isEmpty()) {
                 int selectedIdx = beatsList.getSelectionModel().getSelectedIndex();
                 beatsList.getItems().remove(selectedIdx);
+                model.setDialogueBeats(beatsList.getItems());
             }
         });
 
@@ -141,16 +144,24 @@ public class DialogueMakerController implements Initializable {
             if (!beatSignalsList.getSelectionModel().isEmpty()) {
                 int selectedIdx = beatSignalsList.getSelectionModel().getSelectedIndex();
                 beatSignalsList.getItems().remove(selectedIdx);
+                if (!beatsList.getSelectionModel().isEmpty() ) {
+                    int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
+                    model.getDialogueBeats().get(beatIdx).setSignals(beatSignalsList.getItems());
+                }
             }
         });
         addSignalBtn.setOnAction(click -> {
             beatSignalsList.getItems().add(new DialogueBeatSignal());
+            if (!beatsList.getSelectionModel().isEmpty() ) {
+                int selectedIdx = beatsList.getSelectionModel().getSelectedIndex();
+                model.getDialogueBeats().get(selectedIdx).setSignals(beatSignalsList.getItems());
+            }
         });
 
         //BIG EXPORT BUTTON
         saveExportBtn.setOnAction(click -> {
             try {
-                String exportedDialog = ModelFileAdapter.toFileString(
+                String exportedDialog = ModelAdapter.toFileString(
                         ModelHolder.model
                 );
                 exportDialog.setInitialFileName(sceneId.getText());
@@ -168,7 +179,8 @@ public class DialogueMakerController implements Initializable {
     public void setValue(DialogueScene model) {
 
         this.model = model;
-        refreshView();
+        setBindings();
+//        refreshView();
     }
 
     private void refreshView() {
@@ -224,6 +236,21 @@ public class DialogueMakerController implements Initializable {
 
     private void refreshSignalView(DialogueBeatSignal signal) {
         signalTypeChoice.setValue(signal != null ? signal.getSignalType() : null);
+    }
+
+    private void setBindings() {
+        
+        ModelAdapter.bindProperty(sceneId.textProperty(), model, "id");
+        ModelAdapter.bindProperty(sceneTitle.textProperty(), model, "name");
+        ModelAdapter.bindProperty(sceneArenaChoice.valueProperty(), model.getTiming(), "dialogueArena");
+        ModelAdapter.bindProperty(scenePositionChoice.valueProperty(), model.getTiming(), "dialoguePosition");
+        ModelAdapter.bindProperty(sceneCharacterChoice.valueProperty(), model.getTiming(), "dialogueCharacter");
+        ModelAdapter.bindProperty(sceneBackgroundChoice.valueProperty(), model.getBackgroundInfo(), "backgroundImage");
+        ModelAdapter.bindProperty(changeBackgroundTime.valueProperty(), model.getBackgroundInfo(), "changeTime");
+        ModelAdapter.bindProperty(fadeInTime.valueProperty(), model.getBackgroundInfo(), "startTime");
+        ModelAdapter.bindProperty(fadeOutTime.valueProperty(), model.getBackgroundInfo(), "endTime");
+        
+      
     }
 
 }

@@ -8,7 +8,7 @@ package com.tiem625.tankarenatalk.controllers;
 import com.tiem625.tankarenatalk.constants.GUIScenes;
 import com.tiem625.tankarenatalk.model.DialogueScene;
 import com.tiem625.tankarenatalk.utils.Dialogs;
-import com.tiem625.tankarenatalk.utils.ModelFileAdapter;
+import com.tiem625.tankarenatalk.utils.ModelAdapter;
 import com.tiem625.tankarenatalk.utils.ModelHolder;
 import com.tiem625.tankarenatalk.utils.GUIScene;
 import java.io.File;
@@ -60,7 +60,7 @@ public class MainSceneController implements Initializable {
         System.out.println("Got json string: " + json);
 
         try {
-            ModelHolder.model = ModelFileAdapter.fromFileString(json);
+            ModelHolder.model = ModelAdapter.fromFileString(json);
 
         } catch (Throwable ex) {
             ex.printStackTrace();

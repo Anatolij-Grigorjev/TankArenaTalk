@@ -9,6 +9,7 @@ import com.tiem625.tankarenatalk.components.EnumChoiceBox;
 import com.tiem625.tankarenatalk.components.PositiveDecimalInputField;
 import com.tiem625.tankarenatalk.constants.enums.DialogueCharacterId;
 import com.tiem625.tankarenatalk.model.scene.DialogueActorInfo;
+import com.tiem625.tankarenatalk.utils.ModelAdapter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -58,7 +59,8 @@ public class ActorInfoController implements Initializable {
 
     public void setValue(DialogueActorInfo actorInfo) {
         this.model = actorInfo;
-        refreshView();
+        setBindings();
+//        refreshView();
     }
 
     private void refreshView() {
@@ -69,6 +71,15 @@ public class ActorInfoController implements Initializable {
         actorCharName.setText(model != null? model.getActorName(): "");
         actorModelChoice.setValue(model != null? model.getCharacterModel() : null);
         
+    }
+
+    private void setBindings() {
+        
+        ModelAdapter.bindProperty(actorChangeTime.valueProperty(), model, "changeModelTime");
+        ModelAdapter.bindProperty(actorMoveTime.valueProperty(), model, "actorMoveTime");
+        ModelAdapter.bindProperty(actorDimTime.valueProperty(), model, "actorDimTime");
+        ModelAdapter.bindProperty(actorCharName.textProperty(), model, "actorName");
+        ModelAdapter.bindProperty(actorModelChoice.valueProperty(), model, "characterModel");
     }
 
 }

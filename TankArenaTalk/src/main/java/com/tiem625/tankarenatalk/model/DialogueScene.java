@@ -10,7 +10,6 @@ import com.tiem625.tankarenatalk.model.scene.DialogueSceneTiming;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeat;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import lombok.Data;
 

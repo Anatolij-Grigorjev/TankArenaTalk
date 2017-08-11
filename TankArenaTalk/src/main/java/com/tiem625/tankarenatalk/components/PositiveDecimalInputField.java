@@ -6,6 +6,8 @@
 package com.tiem625.tankarenatalk.components;
 
 import java.math.BigDecimal;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.TextField;
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,6 +18,11 @@ import org.apache.commons.lang3.StringUtils;
 public class PositiveDecimalInputField extends TextField {
     
     private final String DECIMAL_REGEX = "^{0,1}\\d+\\.?\\d*$";
+    
+    private BigDecimal value;
+    private ObjectProperty<BigDecimal> valueProperty = 
+            new SimpleObjectProperty<>(this, "value");
+    
     
     public PositiveDecimalInputField() {
         super();
@@ -37,14 +44,19 @@ public class PositiveDecimalInputField extends TextField {
    
     public BigDecimal getValue() {
         if (!StringUtils.isEmpty(getText())) {
-            return new BigDecimal(getText());
+            return this.value;
         } else {
             return BigDecimal.ZERO;
         }
     }
     
     public void setValue(BigDecimal value) {
+        this.value = value;
         setText(value != null? value.toString(): "");
+    }
+    
+    public ObjectProperty<BigDecimal> valueProperty() {
+        return valueProperty;
     }
     
 }
