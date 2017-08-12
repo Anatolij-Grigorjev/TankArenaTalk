@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import lombok.Getter;
 
 /**
  * FXML Controller class
@@ -25,6 +26,7 @@ import javafx.scene.control.TitledPane;
 public class ActorInfoController implements Initializable {
 
     private final String title;
+    @Getter
     private DialogueActorInfo model;
     
     @FXML

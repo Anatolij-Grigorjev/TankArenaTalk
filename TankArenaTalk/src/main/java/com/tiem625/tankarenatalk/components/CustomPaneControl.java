@@ -52,6 +52,10 @@ public abstract class CustomPaneControl extends Pane {
             ((ActorInfoController)controller).setValue(actorInfo);
         }
         
+        public DialogueActorInfo getValue() {
+            return ((ActorInfoController)controller).getModel();
+        }
+        
     }
     
 //    public static class DialogueBeatInfo extends CustomPaneControl {

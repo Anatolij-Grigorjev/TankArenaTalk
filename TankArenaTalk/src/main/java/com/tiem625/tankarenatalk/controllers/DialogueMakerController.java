@@ -6,6 +6,7 @@
 package com.tiem625.tankarenatalk.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiem625.tankarenatalk.components.CustomPaneControl;
 import com.tiem625.tankarenatalk.components.EnumChoiceBox;
 import com.tiem625.tankarenatalk.components.PositiveDecimalInputField;
@@ -18,10 +19,10 @@ import com.tiem625.tankarenatalk.constants.enums.timing.DialoguePosition;
 import com.tiem625.tankarenatalk.model.DialogueScene;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeat;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeatSignal;
-import com.tiem625.tankarenatalk.model.scene.DialogueBackgroundInfo;
 import com.tiem625.tankarenatalk.utils.Dialogs;
 import com.tiem625.tankarenatalk.utils.ModelAdapter;
 import com.tiem625.tankarenatalk.utils.ModelHolder;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -82,8 +83,6 @@ public class DialogueMakerController implements Initializable {
     @FXML
     private ListView<DialogueBeat> beatsList;
     @FXML
-    private GridPane beatPropsGrid;
-    @FXML
     private TextField speakerName;
     @FXML
     private TextArea beatText;
@@ -116,6 +115,7 @@ public class DialogueMakerController implements Initializable {
         beatsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         beatsList.getSelectionModel().selectedItemProperty().addListener(
                 (obs, beat, prevBeat) -> {
+                    
                     refreshBeatView(beat);
                 }
         );
@@ -160,6 +160,11 @@ public class DialogueMakerController implements Initializable {
 
         //BIG EXPORT BUTTON
         saveExportBtn.setOnAction(click -> {
+            //readjust actor info in model
+            ModelHolder.model.getBackgroundInfo()
+                    .setLeftActor(actorLeftInfo.getValue());
+            ModelHolder.model.getBackgroundInfo()
+                    .setRightActor(actorRightInfo.getValue());
             try {
                 String exportedDialog = ModelAdapter.toFileString(
                         ModelHolder.model
@@ -180,34 +185,12 @@ public class DialogueMakerController implements Initializable {
 
         this.model = model;
         setBindings();
-//        refreshView();
+        refreshView();
     }
 
     private void refreshView() {
-
-        //GENERAL TAB
-        sceneId.setText(model != null ? model.getId() : "");
-        sceneTitle.setText(model != null ? model.getName() : "");
-        sceneArenaChoice.setValue(
-                model != null
-                && model.getTiming() != null ? model.getTiming().getDialogueArena() : null);
-        scenePositionChoice.setValue(
-                model != null
-                && model.getTiming() != null ? model.getTiming().getDialoguePosition() : null);
-        sceneCharacterChoice.setValue(
-                model != null
-                && model.getTiming() != null ? model.getTiming().getDialogueCharacter() : null);
-
+        
         //SCENE TAB
-        sceneBackgroundChoice.setValue(
-                model != null
-                && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getBackgroundImage() : null);
-        changeBackgroundTime.setValue(model != null
-                && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getChangeTime() : DialogueBackgroundInfo.DEFAULT_CHANGE_TIME);
-        fadeInTime.setValue(model != null
-                && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getChangeTime() : DialogueBackgroundInfo.DEFAULT_START_TIME);
-        fadeOutTime.setValue(model != null
-                && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getChangeTime() : DialogueBackgroundInfo.DEFAULT_END_TIME);
         actorLeftInfo.setValue(model != null
                 && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getLeftActor() : null);
         actorRightInfo.setValue(model != null
@@ -215,9 +198,13 @@ public class DialogueMakerController implements Initializable {
 
         //BEATS TAB
         if (model != null && model.getDialogueBeats() != null) {
-            beatsList.getItems().addAll(model.getDialogueBeats());
+           
+            model.getDialogueBeats().forEach(System.out::println);
+            beatsList.setItems(
+                    new ObservableListWrapper<>(model.getDialogueBeats()));
         }
-        beatsList.getSelectionModel().selectFirst();
+//        beatsList.getSelectionModel().selectFirst();
+        
     }
 
     private void refreshBeatView(DialogueBeat model) {
@@ -229,7 +216,8 @@ public class DialogueMakerController implements Initializable {
         speakerChoice.setValue(model != null
                 && model.getSpeech() != null ? model.getSpeech().getSpeakerLocation() : null);
         if (model != null && model.getSignals() != null) {
-            beatSignalsList.getItems().addAll(model.getSignals());
+            beatSignalsList.setItems(
+                    new ObservableListWrapper<>(model.getSignals()));
         }
         beatSignalsList.getSelectionModel().selectFirst();
     }
