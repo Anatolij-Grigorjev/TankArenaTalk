@@ -22,8 +22,11 @@ import com.tiem625.tankarenatalk.model.beat.DialogueBeatSignal;
 import com.tiem625.tankarenatalk.utils.Dialogs;
 import com.tiem625.tankarenatalk.utils.ModelAdapter;
 import com.tiem625.tankarenatalk.utils.ModelHolder;
-import java.io.PrintStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -93,7 +96,7 @@ public class DialogueMakerController implements Initializable {
     @FXML
     private EnumChoiceBox<DialogueSignalType> signalTypeChoice;
     @FXML
-    private GridPane signalParamsGridPane;
+    private GridPane signalParamsPane;
     @FXML
     private Button removeSignalBtn;
     @FXML
@@ -106,7 +109,7 @@ public class DialogueMakerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         exportDialog = new FileChooser();
         exportDialog.setTitle("Save the dialog to...");
         exportDialog.getExtensionFilters().addAll(
@@ -115,16 +118,20 @@ public class DialogueMakerController implements Initializable {
         beatsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         beatsList.getSelectionModel().selectedItemProperty().addListener(
                 (obs, beat, prevBeat) -> {
-                    
-                    refreshBeatView(beat);
+                    int selectedIdx = beatsList.getSelectionModel()
+                            .getSelectedIndex();
+                    DialogueBeat get = model.getDialogueBeats().get(selectedIdx);
+                    refreshBeatView(get);
+                    refreshSignalView(get.getSignals()
+                            .stream().findFirst().orElse(null));
                 }
         );
 
         addBeatBtn.setOnAction(click -> {
             beatsList.getItems().add(new DialogueBeat());
-            
+
             model.setDialogueBeats(beatsList.getItems());
-            
+
         });
         removeBeatBtn.setOnAction(click -> {
             if (!beatsList.getSelectionModel().isEmpty()) {
@@ -133,18 +140,50 @@ public class DialogueMakerController implements Initializable {
                 model.setDialogueBeats(beatsList.getItems());
             }
         });
+        
+        speakerName.textProperty().addListener((obs, o, n) -> {
+            int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
+            if (beatIdx >= 0) {
+                model.getDialogueBeats().get(beatIdx)
+                        .getSpeech().setBeatSpeakerName(n);
+            }
+        });
+        speakerChoice.valueProperty().addListener((obs, o, n) -> {
+            int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
+            if (beatIdx >= 0) {
+                model.getDialogueBeats().get(beatIdx)
+                        .getSpeech().setSpeakerLocation(n);
+            }
+        });
+        beatText.textProperty().addListener((obs, o, n) -> {
+            int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
+            if (beatIdx >= 0) {
+                model.getDialogueBeats().get(beatIdx)
+                        .getSpeech().setBeatText(n);
+            }
+        });
 
         beatSignalsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         beatSignalsList.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, signal, prevSignal) -> {
-                    refreshSignalView(signal);
+                    if (!beatsList.getSelectionModel().isEmpty()
+                            && !beatSignalsList.getSelectionModel().isEmpty()) {
+                        int selectedSignalIdx = beatSignalsList.getSelectionModel()
+                                .getSelectedIndex();
+                        int selectedBeatIdx = beatsList.getSelectionModel()
+                                .getSelectedIndex();
+                        refreshSignalView(
+                                model.getDialogueBeats()
+                                        .get(selectedBeatIdx)
+                                        .getSignals().get(selectedSignalIdx));
+                    }
                 });
         removeSignalBtn.setOnAction(click -> {
             if (!beatSignalsList.getSelectionModel().isEmpty()) {
                 int selectedIdx = beatSignalsList.getSelectionModel().getSelectedIndex();
                 beatSignalsList.getItems().remove(selectedIdx);
-                if (!beatsList.getSelectionModel().isEmpty() ) {
+                if (!beatsList.getSelectionModel().isEmpty()) {
                     int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
                     model.getDialogueBeats().get(beatIdx).setSignals(beatSignalsList.getItems());
                 }
@@ -152,7 +191,7 @@ public class DialogueMakerController implements Initializable {
         });
         addSignalBtn.setOnAction(click -> {
             beatSignalsList.getItems().add(new DialogueBeatSignal());
-            if (!beatsList.getSelectionModel().isEmpty() ) {
+            if (!beatsList.getSelectionModel().isEmpty()) {
                 int selectedIdx = beatsList.getSelectionModel().getSelectedIndex();
                 model.getDialogueBeats().get(selectedIdx).setSignals(beatSignalsList.getItems());
             }
@@ -170,15 +209,17 @@ public class DialogueMakerController implements Initializable {
                         ModelHolder.model
                 );
                 exportDialog.setInitialFileName(sceneId.getText());
-                exportDialog.showSaveDialog(rootPane.getScene().getWindow());
-            } catch (JsonProcessingException ex) {
+                File saveFile = exportDialog.showSaveDialog(rootPane.getScene().getWindow());
+                Files.write(
+                        saveFile.toPath(), 
+                        exportedDialog.getBytes(StandardCharsets.UTF_8));
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 Dialogs.exceptionDialogue(rootPane.getScene().getWindow(), ex)
                         .showAndWait();
             }
         });
-        
-        
+
     }
 
     public void setValue(DialogueScene model) {
@@ -189,7 +230,7 @@ public class DialogueMakerController implements Initializable {
     }
 
     private void refreshView() {
-        
+
         //SCENE TAB
         actorLeftInfo.setValue(model != null
                 && model.getBackgroundInfo() != null ? model.getBackgroundInfo().getLeftActor() : null);
@@ -198,13 +239,13 @@ public class DialogueMakerController implements Initializable {
 
         //BEATS TAB
         if (model != null && model.getDialogueBeats() != null) {
-           
+
             model.getDialogueBeats().forEach(System.out::println);
             beatsList.setItems(
                     new ObservableListWrapper<>(model.getDialogueBeats()));
         }
 //        beatsList.getSelectionModel().selectFirst();
-        
+
     }
 
     private void refreshBeatView(DialogueBeat model) {
@@ -227,7 +268,7 @@ public class DialogueMakerController implements Initializable {
     }
 
     private void setBindings() {
-        
+
         ModelAdapter.bindProperty(sceneId.textProperty(), model, "id");
         ModelAdapter.bindProperty(sceneTitle.textProperty(), model, "name");
         ModelAdapter.bindProperty(sceneArenaChoice.valueProperty(), model.getTiming(), "dialogueArena");
@@ -237,8 +278,7 @@ public class DialogueMakerController implements Initializable {
         ModelAdapter.bindProperty(changeBackgroundTime.valueProperty(), model.getBackgroundInfo(), "changeTime");
         ModelAdapter.bindProperty(fadeInTime.valueProperty(), model.getBackgroundInfo(), "startTime");
         ModelAdapter.bindProperty(fadeOutTime.valueProperty(), model.getBackgroundInfo(), "endTime");
-        
-      
+
     }
 
 }

@@ -167,7 +167,7 @@
                                                                         <children>
                                                                             <Label prefHeight="17.0" prefWidth="135.0" text="Speaker" />
                                                                             <Label prefHeight="17.0" prefWidth="89.0" text="Text" GridPane.rowIndex="2" />
-                                                                            <Label text="Speaker Name" GridPane.rowIndex="1" />
+                                                                            <Label text="Speaker Custom Name" GridPane.rowIndex="1" />
                                                                             <TextField fx:id="speakerName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                             <TextArea fx:id="beatText" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                                 <GridPane.margin>
@@ -209,7 +209,7 @@
                                                                                     <Label text="Signal Type" />
                                                                                     <Label text="Signal Params" GridPane.rowIndex="1" />
                                                                                     <EnumChoiceBox fx:id="signalTypeChoice" enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueSignalType" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                                                    <GridPane fx:id="singnalParamsGridPane" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                    <Pane fx:id="singnalParamsPane" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                                 </children>
                                                          <BorderPane.margin>
                                                             <Insets left="5.0" />

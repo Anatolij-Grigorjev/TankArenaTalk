@@ -7,7 +7,6 @@ package com.tiem625.tankarenatalk.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.javafx.property.adapter.*;
 import com.tiem625.tankarenatalk.model.DialogueScene;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -32,7 +31,9 @@ public class ModelAdapter {
     }
 
     public static String toFileString(DialogueScene scene) throws JsonProcessingException {
-        return mapper.writeValueAsString(scene);
+        return mapper
+                .writerWithDefaultPrettyPrinter()
+                .writeValueAsString(scene);
     }
 
     public static <T> void bindProperty(ObjectProperty<T> prop, Object bean, String fieldName) {
