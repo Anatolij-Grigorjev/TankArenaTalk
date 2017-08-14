@@ -6,7 +6,7 @@
 package com.tiem625.tankarenatalk.model.beat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tiem625.tankarenatalk.constants.enums.DialogueSignalType;
+import com.tiem625.tankarenatalk.constants.enums.DialogueBeatSignalType;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 public class DialogueBeatSignal {
     @JsonProperty("signal_type")
-    private DialogueSignalType signalType;
+    private DialogueBeatSignalType signalType;
     @JsonProperty("signal_params")
     private List<Object> signalParams = new ArrayList<>();
 }

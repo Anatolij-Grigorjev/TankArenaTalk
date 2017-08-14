@@ -10,20 +10,17 @@ import lombok.Getter;
 
 /**
  *
- * @author Anatolij
+ * @author Tiem625
  */
-public enum DialogueSignalType implements CodeAwareEnum {
+public enum DialogueBeatSignalModelActionTypes implements CodeAwareEnum {
     
-    LEFT_ACTION("left_action"),
-    LEFT_CHANGE_MODEL("left_change_model"),
-    RIGHT_ACTION("right_action"),
-    RIGHT_CHANGE_MODEL("right_change_model"),
-    CHANGE_BACKGROUND("change_bg");
+    ACTOR_ENTER("ActorEnter"),
+    ACTOR_LEAVE("ActorLeave");
     
     @Getter
     private String code;
     
-    private DialogueSignalType(String code) {
+    private DialogueBeatSignalModelActionTypes(String code) {
         this.code = code;
     }
 }

@@ -5,13 +5,12 @@
  */
 package com.tiem625.tankarenatalk.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sun.javafx.collections.ObservableListWrapper;
 import com.tiem625.tankarenatalk.components.CustomPaneControl;
 import com.tiem625.tankarenatalk.components.EnumChoiceBox;
 import com.tiem625.tankarenatalk.components.PositiveDecimalInputField;
 import com.tiem625.tankarenatalk.constants.enums.DialogueCharacterId;
-import com.tiem625.tankarenatalk.constants.enums.DialogueSignalType;
+import com.tiem625.tankarenatalk.constants.enums.DialogueBeatSignalType;
 import com.tiem625.tankarenatalk.constants.enums.DialogueSpeakerLocation;
 import com.tiem625.tankarenatalk.constants.enums.timing.DialogueArena;
 import com.tiem625.tankarenatalk.constants.enums.timing.DialogueCharacter;
@@ -28,6 +27,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -87,14 +87,18 @@ public class DialogueMakerController implements Initializable {
     private ListView<DialogueBeat> beatsList;
     @FXML
     private TextField speakerName;
+    private ChangeListener<String> speakerNameBinding;
     @FXML
     private TextArea beatText;
+    private ChangeListener<String> beatTextBinding;
     @FXML
     private EnumChoiceBox<DialogueSpeakerLocation> speakerChoice;
+    private ChangeListener<DialogueSpeakerLocation> speakerChoiceBinding;
     @FXML
     private ListView<DialogueBeatSignal> beatSignalsList;
     @FXML
-    private EnumChoiceBox<DialogueSignalType> signalTypeChoice;
+    private EnumChoiceBox<DialogueBeatSignalType> signalTypeChoice;
+    private ChangeListener<DialogueBeatSignalType> signalTypeChoiceBinding;
     @FXML
     private GridPane signalParamsPane;
     @FXML
@@ -141,28 +145,28 @@ public class DialogueMakerController implements Initializable {
             }
         });
         
-        speakerName.textProperty().addListener((obs, o, n) -> {
+        ModelAdapter.replaceListenerIfExists(speakerNameBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             if (beatIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
                         .getSpeech().setBeatSpeakerName(n);
             }
-        });
-        speakerChoice.valueProperty().addListener((obs, o, n) -> {
+        }, speakerName.textProperty());
+        ModelAdapter.replaceListenerIfExists(speakerChoiceBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             if (beatIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
                         .getSpeech().setSpeakerLocation(n);
             }
-        });
-        beatText.textProperty().addListener((obs, o, n) -> {
+        }, speakerChoice.valueProperty());
+        ModelAdapter.replaceListenerIfExists(beatTextBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             if (beatIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
                         .getSpeech().setBeatText(n);
             }
-        });
-
+        }, beatText.textProperty());
+        
         beatSignalsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         beatSignalsList.getSelectionModel()
                 .selectedItemProperty()
@@ -196,6 +200,14 @@ public class DialogueMakerController implements Initializable {
                 model.getDialogueBeats().get(selectedIdx).setSignals(beatSignalsList.getItems());
             }
         });
+        ModelAdapter.replaceListenerIfExists(signalTypeChoiceBinding, (obs, o, n) -> {
+            int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
+            int signalIdx = beatSignalsList.getSelectionModel().getSelectedIndex();
+            if (beatIdx >= 0 && signalIdx >= 0) {
+                model.getDialogueBeats().get(beatIdx)
+                        .getSignals().get(signalIdx).setSignalType(n);
+            }
+        }, signalTypeChoice.valueProperty());
 
         //BIG EXPORT BUTTON
         saveExportBtn.setOnAction(click -> {
@@ -260,7 +272,7 @@ public class DialogueMakerController implements Initializable {
             beatSignalsList.setItems(
                     new ObservableListWrapper<>(model.getSignals()));
         }
-        beatSignalsList.getSelectionModel().selectFirst();
+        
     }
 
     private void refreshSignalView(DialogueBeatSignal signal) {

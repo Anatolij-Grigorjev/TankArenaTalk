@@ -33,7 +33,7 @@ public abstract class CustomPaneControl extends Pane {
         }
         fxmlLoader.setController(controller);
         this.controller = controller;
-        
+       
         try {
             fxmlLoader.load();
         } catch (IOException exception) {

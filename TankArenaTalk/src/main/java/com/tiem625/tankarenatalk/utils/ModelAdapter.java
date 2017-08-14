@@ -11,9 +11,9 @@ import com.tiem625.tankarenatalk.model.DialogueScene;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
+import javafx.beans.value.ChangeListener;
 
 /**
  *
@@ -36,7 +36,7 @@ public class ModelAdapter {
                 .writeValueAsString(scene);
     }
 
-    public static <T> void bindProperty(ObjectProperty<T> prop, Object bean, String fieldName) {
+    public static <T> void bindProperty(Property<T> prop, Object bean, String fieldName) {
 
         try {
             prop.bindBidirectional(
@@ -48,16 +48,16 @@ public class ModelAdapter {
             ex.printStackTrace();
         }
     }
-
-    public static void bindProperty(StringProperty prop, Object bean, String fieldName) {
-        try {
-            prop.bindBidirectional(
-                    JavaBeanObjectPropertyBuilder
-                            .create().bean(bean).name(fieldName).build());
-        } catch (NoSuchMethodException ex) {
-            Logger.getLogger(ModelAdapter.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
+    
+    public static <T> void replaceListenerIfExists(
+            ChangeListener<T> listener,
+            ChangeListener<T> replacement,
+            Property<T> property) {
+        if (listener != null) {
+            property.removeListener(listener);
         }
+        listener = replacement;
+        property.addListener(listener);
     }
 
 }
