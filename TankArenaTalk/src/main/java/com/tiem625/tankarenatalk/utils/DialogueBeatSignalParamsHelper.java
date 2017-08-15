@@ -116,7 +116,7 @@ public class DialogueBeatSignalParamsHelper {
                 
             }, actionTypeChoice.valueProperty());
             actionTypeChoice.setValue(signal != null? 
-                    DialogueBeatSignalModelActionTypes.ofCode(ModelAdapter.nthOrNull(signal.getSignalParams(), 0)) 
+                    DialogueBeatSignalModelActionTypes.ofCode((String)ModelAdapter.nthOrNull(signal.getSignalParams(), 0)) 
                     : null);
             
             ModelAdapter.replaceListenerIfExists(requireVisibleCheckBinding, (obs, o, n) -> {
@@ -136,7 +136,7 @@ public class DialogueBeatSignalParamsHelper {
                 
             }, requireVisibleCheck.selectedProperty());
             requireVisibleCheck.setSelected(signal != null? 
-                    ModelAdapter.nthOrNull(signal.getSignalParams(), 1) : false);
+                    (boolean)ModelAdapter.nthOrNull(signal.getSignalParams(), 1) : false);
             
             
             
@@ -179,7 +179,7 @@ public class DialogueBeatSignalParamsHelper {
             }, characterModelChoice.valueProperty());
             
             characterModelChoice.setValue(signal != null? 
-                    DialogueCharacterId.ofCode(ModelAdapter.nthOrNull(signal.getSignalParams(), 0))
+                    DialogueCharacterId.ofCode((String)ModelAdapter.nthOrNull(signal.getSignalParams(), 0))
                     : null);
             
         }
