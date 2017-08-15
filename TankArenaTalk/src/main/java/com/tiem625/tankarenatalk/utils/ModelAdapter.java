@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiem625.tankarenatalk.model.DialogueScene;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.Property;
@@ -58,6 +59,17 @@ public class ModelAdapter {
         }
         listener = replacement;
         property.addListener(listener);
+    }
+    
+    public static <T> T nthOrNull(List<T> col, int n) {
+        if (col == null || col.isEmpty()) {
+            return null;
+        }
+        if (col.size() <= n) {
+            return null;
+        }
+        
+        return col.get(n);
     }
 
 }

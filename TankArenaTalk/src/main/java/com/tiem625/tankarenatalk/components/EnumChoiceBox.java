@@ -21,6 +21,11 @@ public class EnumChoiceBox<T extends Enum<T>> extends ChoiceBox<T> {
         setConverter(new ObservableEnumList.Converter<>(enumClazz));
     }
     
+    public EnumChoiceBox(Class<T> clazz) {
+        super();
+        setEnumClass(clazz);
+    }
+    
     public EnumChoiceBox(@NamedArg("enumClass") String enumClazz) {  
         super();
         try {

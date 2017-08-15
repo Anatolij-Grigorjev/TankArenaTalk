@@ -9,6 +9,7 @@ import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
 import com.tiem625.tankarenatalk.constants.ConstantsUtils;
 import com.tiem625.tankarenatalk.constants.DisplayableEnum;
 import com.tiem625.tankarenatalk.constants.enums.timing.DialogueCharacter;
+import java.util.stream.Stream;
 import lombok.Getter;
 
 /**
@@ -38,6 +39,11 @@ public enum DialogueCharacterId implements CodeAwareEnum, DisplayableEnum {
 
     private static String getIdFromCharacter(DialogueCharacter character) {
         return ID_PREFIX + character.getCode();
+    }
+    
+    public static DialogueCharacterId ofCode(String code) {
+        return Stream.of(values()).filter(id -> id.code.equalsIgnoreCase(code))
+                .findFirst().orElse(null);
     }
     
 }

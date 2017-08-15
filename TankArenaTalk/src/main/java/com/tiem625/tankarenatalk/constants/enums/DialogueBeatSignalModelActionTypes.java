@@ -6,6 +6,7 @@
 package com.tiem625.tankarenatalk.constants.enums;
 
 import com.tiem625.tankarenatalk.constants.CodeAwareEnum;
+import java.util.stream.Stream;
 import lombok.Getter;
 
 /**
@@ -22,5 +23,11 @@ public enum DialogueBeatSignalModelActionTypes implements CodeAwareEnum {
     
     private DialogueBeatSignalModelActionTypes(String code) {
         this.code = code;
+    }
+    
+    public static DialogueBeatSignalModelActionTypes ofCode(String code) {
+        return Stream.of(values())
+                .filter(type -> type.code.equalsIgnoreCase(code))
+                .findFirst().orElse(null);
     }
 }
