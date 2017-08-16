@@ -6,6 +6,7 @@
 package com.tiem625.tankarenatalk.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiem625.tankarenatalk.model.DialogueScene;
 import java.io.IOException;
@@ -22,9 +23,15 @@ import javafx.beans.value.ChangeListener;
  */
 public class ModelAdapter {
 
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static ObjectMapper mapper;
+    static {
+        mapper = new ObjectMapper();
+        mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
+    }
 
     private ModelAdapter() {
+        
+        
     }
 
     public static DialogueScene fromFileString(String jsonString) throws IOException {

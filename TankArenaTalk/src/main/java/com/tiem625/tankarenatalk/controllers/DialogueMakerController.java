@@ -19,6 +19,7 @@ import com.tiem625.tankarenatalk.model.DialogueScene;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeat;
 import com.tiem625.tankarenatalk.model.beat.DialogueBeatSignal;
 import com.tiem625.tankarenatalk.utils.Dialogs;
+import com.tiem625.tankarenatalk.utils.DialogueBeatSignalParamsHelper;
 import com.tiem625.tankarenatalk.utils.ModelAdapter;
 import com.tiem625.tankarenatalk.utils.ModelHolder;
 import java.io.File;
@@ -37,6 +38,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 /**
@@ -100,7 +102,8 @@ public class DialogueMakerController implements Initializable {
     private EnumChoiceBox<DialogueBeatSignalType> signalTypeChoice;
     private ChangeListener<DialogueBeatSignalType> signalTypeChoiceBinding;
     @FXML
-    private GridPane signalParamsPane;
+    private VBox signalParamsPane;
+    private DialogueBeatSignalParamsHelper paramsPaneHelper;
     @FXML
     private Button removeSignalBtn;
     @FXML
@@ -113,7 +116,9 @@ public class DialogueMakerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        
+        paramsPaneHelper = DialogueBeatSignalParamsHelper.getInstance();
+        
         exportDialog = new FileChooser();
         exportDialog.setTitle("Save the dialog to...");
         exportDialog.getExtensionFilters().addAll(
@@ -203,6 +208,10 @@ public class DialogueMakerController implements Initializable {
         ModelAdapter.replaceListenerIfExists(signalTypeChoiceBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             int signalIdx = beatSignalsList.getSelectionModel().getSelectedIndex();
+            signalParamsPane.getChildren().clear();
+            if (n != null) {
+              signalParamsPane.getChildren().add(paramsPaneHelper.paramsView(n));
+            }
             if (beatIdx >= 0 && signalIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
                         .getSignals().get(signalIdx).setSignalType(n);
@@ -277,6 +286,7 @@ public class DialogueMakerController implements Initializable {
 
     private void refreshSignalView(DialogueBeatSignal signal) {
         signalTypeChoice.setValue(signal != null ? signal.getSignalType() : null);
+        paramsPaneHelper.setValue(signal);
     }
 
     private void setBindings() {

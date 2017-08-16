@@ -208,8 +208,10 @@
                                                                                 <children>
                                                                                     <Label text="Signal Type" />
                                                                                     <Label text="Signal Params" GridPane.rowIndex="1" />
-                                                                                    <EnumChoiceBox fx:id="signalTypeChoice" enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueSignalType" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
-                                                                                    <Pane fx:id="singnalParamsPane" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                    <EnumChoiceBox fx:id="signalTypeChoice" enumClass="com.tiem625.tankarenatalk.constants.enums.DialogueBeatSignalType" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+                                                                                    <VBox fx:id="signalParamsPane" GridPane.columnIndex="1" GridPane.rowIndex="1" >
+                                                                                        
+                                                                                    </VBox>
                                                                                 </children>
                                                          <BorderPane.margin>
                                                             <Insets left="5.0" />

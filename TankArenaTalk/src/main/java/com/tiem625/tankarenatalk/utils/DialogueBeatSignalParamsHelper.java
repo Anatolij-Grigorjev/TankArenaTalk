@@ -40,6 +40,16 @@ public class DialogueBeatSignalParamsHelper {
         }
         return instance;
     }
+    
+    public Node paramsView(DialogueBeatSignalType signalType) {
+        return signalParamsPanes.get(signalType).getView();
+    }
+    
+    public void setValue(DialogueBeatSignal signal) {
+        if (signal != null) {
+            signalParamsPanes.get(signal.getSignalType()).setValue(signal);
+        }
+    }
 
     private DialogueBeatSignalParamsHelper() {
 
@@ -104,7 +114,7 @@ public class DialogueBeatSignalParamsHelper {
 
             ModelAdapter.replaceListenerIfExists(actionTypesChoiceBinding, (obs, o, n) -> {
                 
-                if (signal != null) {
+                if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
                         signal.setSignalParams(new ArrayList<>());
                         //this will require first object being 
@@ -121,7 +131,7 @@ public class DialogueBeatSignalParamsHelper {
             
             ModelAdapter.replaceListenerIfExists(requireVisibleCheckBinding, (obs, o, n) -> {
                 
-                if (signal != null) {
+                if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
                         signal.setSignalParams(new ArrayList<>());
                         //this will require first object being 
@@ -135,11 +145,12 @@ public class DialogueBeatSignalParamsHelper {
                 }
                 
             }, requireVisibleCheck.selectedProperty());
-            requireVisibleCheck.setSelected(signal != null? 
-                    (boolean)ModelAdapter.nthOrNull(signal.getSignalParams(), 1) : false);
-            
-            
-            
+            Object paramO = signal != null? 
+                    ModelAdapter.nthOrNull(signal.getSignalParams(), 1) : false;
+            boolean param = paramO != null? 
+                    (boolean)paramO : false;
+            requireVisibleCheck.setSelected(param);
+ 
         }
 
     }
@@ -166,7 +177,7 @@ public class DialogueBeatSignalParamsHelper {
             
             ModelAdapter.replaceListenerIfExists(characterModelChoiceBinding, (obs, o, n) -> {
                 
-                if (signal != null) {
+                if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
                         signal.setSignalParams(new ArrayList<>());
                         //this will require first object being 
@@ -190,7 +201,7 @@ public class DialogueBeatSignalParamsHelper {
     public static class ChangeBackgroundSignalParamsPane extends DialogueBeatSignalParamsPane {
         
         private EnumChoiceBox<DialogueCharacterId> characterBackgroundChoice;
-        private ChangeListener<DialogueCharacterId> chracterBackgroundChoiceBinding;
+        private ChangeListener<DialogueCharacterId> characterBackgroundChoiceBinding;
         private PositiveDecimalInputField backgroundChangeTime;
         private ChangeListener<BigDecimal> backgroundChangeTimeBinding;
 
@@ -206,7 +217,42 @@ public class DialogueBeatSignalParamsHelper {
 
         @Override
         public void setValue(DialogueBeatSignal signal) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
+            ModelAdapter.replaceListenerIfExists(characterBackgroundChoiceBinding, (obs, o, n) -> {
+                    
+                if (signal != null && n != null) {
+                    if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
+                        signal.setSignalParams(new ArrayList<>());
+                        //this will require first object being 
+                        //present for replacement
+                        signal.getSignalParams().add("");
+                    }
+                    signal.getSignalParams().set(0, n.getCode());
+                }
+                
+            }, characterBackgroundChoice.valueProperty());
+            characterBackgroundChoice.setValue(signal != null? 
+                    DialogueCharacterId.ofCode((String)ModelAdapter.nthOrNull(signal.getSignalParams(), 0))
+                    : null);
+            
+            ModelAdapter.replaceListenerIfExists(backgroundChangeTimeBinding, (obs, o, n) -> {
+            
+                if (signal != null && n != null) {
+                    if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
+                        signal.setSignalParams(new ArrayList<>());
+                        //this will require first object being 
+                        //present for replacement
+                        signal.getSignalParams().add("");
+                    }
+                    if (signal.getSignalParams().size() < 2) {
+                        signal.getSignalParams().add(BigDecimal.ZERO);
+                    }
+                    signal.getSignalParams().set(1, n);
+                }
+                
+            }, backgroundChangeTime.valueProperty());
+            backgroundChangeTime.setValue(signal != null? 
+                    (BigDecimal)ModelAdapter.nthOrNull(signal.getSignalParams(), 1) : null);
         }
         
     }
