@@ -55,7 +55,9 @@ public class MainSceneController implements Initializable {
         if (dialogJson == null) {
             return;
         }
-
+        
+        ModelHolder.CHOSEN_FILE_PATH = dialogJson.getParent();
+        
         String json = new String(Files.readAllBytes(dialogJson.toPath()), StandardCharsets.UTF_8);
         System.out.println("Got json string: " + json);
 

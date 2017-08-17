@@ -112,7 +112,7 @@ public class DialogueBeatSignalParamsHelper {
         @Override
         public void setValue(DialogueBeatSignal signal) {
 
-            ModelAdapter.replaceListenerIfExists(actionTypesChoiceBinding, (obs, o, n) -> {
+            actionTypesChoiceBinding = ModelAdapter.replaceListenerIfExists(actionTypesChoiceBinding, (obs, o, n) -> {
                 
                 if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
@@ -129,7 +129,7 @@ public class DialogueBeatSignalParamsHelper {
                     DialogueBeatSignalModelActionTypes.ofCode((String)ModelAdapter.nthOrNull(signal.getSignalParams(), 0)) 
                     : null);
             
-            ModelAdapter.replaceListenerIfExists(requireVisibleCheckBinding, (obs, o, n) -> {
+            requireVisibleCheckBinding = ModelAdapter.replaceListenerIfExists(requireVisibleCheckBinding, (obs, o, n) -> {
                 
                 if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
@@ -175,7 +175,7 @@ public class DialogueBeatSignalParamsHelper {
         @Override
         public void setValue(DialogueBeatSignal signal) {
             
-            ModelAdapter.replaceListenerIfExists(characterModelChoiceBinding, (obs, o, n) -> {
+            characterModelChoiceBinding = ModelAdapter.replaceListenerIfExists(characterModelChoiceBinding, (obs, o, n) -> {
                 
                 if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
@@ -218,7 +218,7 @@ public class DialogueBeatSignalParamsHelper {
         @Override
         public void setValue(DialogueBeatSignal signal) {
             
-            ModelAdapter.replaceListenerIfExists(characterBackgroundChoiceBinding, (obs, o, n) -> {
+            characterBackgroundChoiceBinding = ModelAdapter.replaceListenerIfExists(characterBackgroundChoiceBinding, (obs, o, n) -> {
                     
                 if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {
@@ -235,7 +235,7 @@ public class DialogueBeatSignalParamsHelper {
                     DialogueCharacterId.ofCode((String)ModelAdapter.nthOrNull(signal.getSignalParams(), 0))
                     : null);
             
-            ModelAdapter.replaceListenerIfExists(backgroundChangeTimeBinding, (obs, o, n) -> {
+            backgroundChangeTimeBinding = ModelAdapter.replaceListenerIfExists(backgroundChangeTimeBinding, (obs, o, n) -> {
             
                 if (signal != null && n != null) {
                     if (signal.getSignalParams() == null || signal.getSignalParams().isEmpty()) {

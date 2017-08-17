@@ -57,15 +57,16 @@ public class ModelAdapter {
         }
     }
     
-    public static <T> void replaceListenerIfExists(
+    public static <T> ChangeListener<T> replaceListenerIfExists(
             ChangeListener<T> listener,
             ChangeListener<T> replacement,
             Property<T> property) {
         if (listener != null) {
             property.removeListener(listener);
         }
-        listener = replacement;
-        property.addListener(listener);
+        
+        property.addListener(replacement);
+        return replacement;
     }
     
     public static <T> T nthOrNull(List<T> col, int n) {

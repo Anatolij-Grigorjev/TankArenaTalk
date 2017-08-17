@@ -116,14 +116,17 @@ public class DialogueMakerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         paramsPaneHelper = DialogueBeatSignalParamsHelper.getInstance();
-        
+
         exportDialog = new FileChooser();
         exportDialog.setTitle("Save the dialog to...");
         exportDialog.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TankArena JSON Dialog Files ", "*.json"),
                 new FileChooser.ExtensionFilter("All Files ", "*.*"));
+        if (ModelHolder.CHOSEN_FILE_PATH != null) {
+            exportDialog.setInitialDirectory(new File(ModelHolder.CHOSEN_FILE_PATH));
+        }
         beatsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         beatsList.getSelectionModel().selectedItemProperty().addListener(
                 (obs, beat, prevBeat) -> {
@@ -149,29 +152,29 @@ public class DialogueMakerController implements Initializable {
                 model.setDialogueBeats(beatsList.getItems());
             }
         });
-        
-        ModelAdapter.replaceListenerIfExists(speakerNameBinding, (obs, o, n) -> {
+
+        speakerNameBinding = ModelAdapter.replaceListenerIfExists(speakerNameBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             if (beatIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
                         .getSpeech().setBeatSpeakerName(n);
             }
         }, speakerName.textProperty());
-        ModelAdapter.replaceListenerIfExists(speakerChoiceBinding, (obs, o, n) -> {
+        speakerChoiceBinding = ModelAdapter.replaceListenerIfExists(speakerChoiceBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             if (beatIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
                         .getSpeech().setSpeakerLocation(n);
             }
         }, speakerChoice.valueProperty());
-        ModelAdapter.replaceListenerIfExists(beatTextBinding, (obs, o, n) -> {
+        beatTextBinding = ModelAdapter.replaceListenerIfExists(beatTextBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             if (beatIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
                         .getSpeech().setBeatText(n);
             }
         }, beatText.textProperty());
-        
+
         beatSignalsList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         beatSignalsList.getSelectionModel()
                 .selectedItemProperty()
@@ -182,10 +185,12 @@ public class DialogueMakerController implements Initializable {
                                 .getSelectedIndex();
                         int selectedBeatIdx = beatsList.getSelectionModel()
                                 .getSelectedIndex();
-                        refreshSignalView(
-                                model.getDialogueBeats()
-                                        .get(selectedBeatIdx)
-                                        .getSignals().get(selectedSignalIdx));
+                        if (selectedSignalIdx > -1) {
+                            refreshSignalView(
+                                    model.getDialogueBeats()
+                                            .get(selectedBeatIdx)
+                                            .getSignals().get(selectedSignalIdx));
+                        }
                     }
                 });
         removeSignalBtn.setOnAction(click -> {
@@ -205,12 +210,12 @@ public class DialogueMakerController implements Initializable {
                 model.getDialogueBeats().get(selectedIdx).setSignals(beatSignalsList.getItems());
             }
         });
-        ModelAdapter.replaceListenerIfExists(signalTypeChoiceBinding, (obs, o, n) -> {
+        signalTypeChoiceBinding = ModelAdapter.replaceListenerIfExists(signalTypeChoiceBinding, (obs, o, n) -> {
             int beatIdx = beatsList.getSelectionModel().getSelectedIndex();
             int signalIdx = beatSignalsList.getSelectionModel().getSelectedIndex();
             signalParamsPane.getChildren().clear();
             if (n != null) {
-              signalParamsPane.getChildren().add(paramsPaneHelper.paramsView(n));
+                signalParamsPane.getChildren().add(paramsPaneHelper.paramsView(n));
             }
             if (beatIdx >= 0 && signalIdx >= 0) {
                 model.getDialogueBeats().get(beatIdx)
@@ -231,9 +236,12 @@ public class DialogueMakerController implements Initializable {
                 );
                 exportDialog.setInitialFileName(sceneId.getText());
                 File saveFile = exportDialog.showSaveDialog(rootPane.getScene().getWindow());
-                Files.write(
-                        saveFile.toPath(), 
-                        exportedDialog.getBytes(StandardCharsets.UTF_8));
+                //nothing was chosen
+                if (saveFile != null) { 
+                    Files.write(
+                            saveFile.toPath(),
+                            exportedDialog.getBytes(StandardCharsets.UTF_8));
+                }
             } catch (IOException ex) {
                 ex.printStackTrace();
                 Dialogs.exceptionDialogue(rootPane.getScene().getWindow(), ex)
@@ -281,7 +289,7 @@ public class DialogueMakerController implements Initializable {
             beatSignalsList.setItems(
                     new ObservableListWrapper<>(model.getSignals()));
         }
-        
+
     }
 
     private void refreshSignalView(DialogueBeatSignal signal) {

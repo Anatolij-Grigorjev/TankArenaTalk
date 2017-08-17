@@ -17,4 +17,6 @@ public class ModelHolder {
     
     public static DialogueScene model;
     
+    public static String CHOSEN_FILE_PATH = null;
+    
 }
